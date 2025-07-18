@@ -21,9 +21,9 @@ export default defineNuxtConfig({
     },
     families: [
       {
-        name: 'Rubik',
+        name: 'Inter',
         provider: 'google',
-        weights: [300, 400, 500, 600, 700, 800, 900],
+        weights: [300, 400, 500, 600, 700, 800],
         styles: ['normal', 'italic'],
         display: 'swap',
       },
@@ -39,7 +39,8 @@ export default defineNuxtConfig({
   },
 
   colorMode: {
-    preference: 'light', // Default to light mode
+    preference: 'dark',
+    fallback: 'dark',
   },
 
   ui: {
