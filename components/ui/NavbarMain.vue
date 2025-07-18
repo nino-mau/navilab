@@ -20,11 +20,22 @@
     </div>
 
     <!-- LoggedOut Menu  -->
-    <div v-else class="flex flex-row items-center gap-5">
+    <div v-else class="flex flex-row items-center gap-4">
       <!-- Button: Login -->
-      <UButton label="Login" color="tertiary" />
+      <UButton
+        label="Login"
+        size="xl"
+        variant="ghost"
+        color="neutral"
+        class="text-white hover:bg-white/10"
+      />
       <!-- Button: Sign Up -->
-      <UButton size="xl" label="Sign Up" color="secondary" />
+      <UButton
+        size="xl"
+        class="font-semibold"
+        label="Sign up"
+        color="secondary"
+      />
     </div>
   </div>
 </template>
