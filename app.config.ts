@@ -21,6 +21,10 @@ export default defineAppConfig({
       },
     },
 
+    formField: {
+      slots: { error: 'mt-1 text-error' },
+    },
+
     button: {
       slots: {
         // Change border radius to sm for all buttons
