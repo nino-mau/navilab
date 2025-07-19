@@ -10,3 +10,34 @@
   display: inline-block;
   color: transparent;
 }
+
+/* Custom util class to apply nice lookign border to top of a card */
+@utility card-border-top-grad-* {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    background: --value(--color-grad-*);
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+  }
+}
+
+@utility card-border-top-* {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    background-color: --value(--color-*);
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+  }
+}
