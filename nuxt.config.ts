@@ -14,6 +14,12 @@ export default defineNuxtConfig({
     'nuxt-lucide-icons',
   ],
 
+  runtimeConfig: {
+    databaseUrl: process.env.POSTGRES_DB_URL,
+    public: {
+      betterAuthUrl: process.env.BETTER_AUTH_URL,
+    },
+  },
   fonts: {
     defaults: {
       weights: [300, 400, 500, 600, 700, 800, 900],
