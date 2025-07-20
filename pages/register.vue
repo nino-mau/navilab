@@ -10,9 +10,8 @@
       <UForm
         :schema="registerSchema"
         :state="formValues"
-        :validate-on="['input']"
         class="space-y-6"
-        @submit="onSubmit"
+        @submit="onFormSubmit"
       >
         <!-- Field: Username -->
         <UFormField name="username">
@@ -31,7 +30,7 @@
         </UFormField>
 
         <!-- Field: Email -->
-        <UFormField :required="false" name="email">
+        <UFormField :required="false" name="email" :error="emailFieldError">
           <UInput
             v-model="formValues.email"
             placeholder=""
@@ -125,19 +124,13 @@
 import type { FormSubmitEvent } from '@nuxt/ui';
 import cn from 'cn-lib';
 import * as z from 'zod';
+import { authClient } from '~/utils/auth-client';
 
 definePageMeta({
   layout: 'blank',
 });
 
 const toast = useToast();
-
-interface FormValues {
-  username?: string;
-  email?: string;
-  password?: string;
-  confirmPassword?: string;
-}
 
 // Form validation schema
 const registerSchema = z
@@ -150,9 +143,8 @@ const registerSchema = z
         message: 'Username contains invalide characters',
       }),
     email: z
-      .string()
-      .min(1, { message: 'Email is required' })
-      .email({ message: 'Invalid email format' }),
+      .email({ message: 'Invalid email format' })
+      .min(1, { message: 'Email is required' }),
     password: z
       .string()
       .min(8, { message: 'Password must be at least 8 characters' }),
@@ -174,6 +166,7 @@ const formValues = reactive<Partial<z.output<typeof registerSchema>>>({
 
 const showPassword = ref<boolean>(false);
 const showConfirmPassowrd = ref<boolean>(false);
+const emailFieldError = ref<string | undefined>(undefined);
 
 const floatingLabelStyle = cn(
   'text-text2 peer-focus:text-text2 rounded-sm peer-placeholder-shown:text-dimmed peer-focus:bg-background-elevated',
@@ -183,12 +176,43 @@ const floatingLabelStyle = cn(
   'peer-focus:-top-2.5 peer-focus:text-sm peer-focus:font-medium'
 );
 
-async function onSubmit(event: FormSubmitEvent<FormValues>) {
-  toast.add({
-    title: 'Success',
-    description: 'The form has been submitted.',
-    color: 'success',
+async function onFormSubmit(
+  event: FormSubmitEvent<z.output<typeof registerSchema>>
+) {
+  // Sign up user using better auth
+  const { data, error } = await authClient.signUp.email({
+    name: event.data.username,
+    email: event.data.email,
+    password: 'testtest',
   });
-  console.log(event.data);
+
+  if (error) {
+    if (error.code === 'USER_ALREADY_EXISTS') {
+      const invalidEmail = event.data.email;
+      emailFieldError.value = 'User already exist';
+
+      // Remove the error when the input value doesn't match the invalid email
+      watch(
+        () => formValues.email,
+        (newValue) => {
+          if (newValue !== invalidEmail) {
+            emailFieldError.value = undefined;
+          } else if (newValue === invalidEmail) {
+            emailFieldError.value = 'User already exist';
+          }
+        }
+      );
+    } else {
+      console.log(data, error);
+      toast.add({
+        title: 'Error',
+        description: 'Register failed due to unexpected error',
+        color: 'error',
+        icon: 'i-lucide-circle-x',
+      });
+    }
+    return;
+  }
+
 }
 </script>
