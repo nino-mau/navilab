@@ -1,4 +1,3 @@
-import tailwindcss from '@tailwindcss/vite';
 import { fileURLToPath } from 'url';
 
 export default defineNuxtConfig({
@@ -44,13 +43,6 @@ export default defineNuxtConfig({
     ],
   },
 
-  vite: {
-    plugins: [tailwindcss()],
-  },
-
-  runtimeConfig: {
-    databaseUrl: process.env.POSTGRES_DB_URL,
-  },
 
   colorMode: {
     preference: 'light',
