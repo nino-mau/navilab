@@ -4,8 +4,8 @@
     <div
       class="bg-secondary mt-10 flex flex-col gap-4 rounded-md p-8 shadow-md"
     >
-      <h1 class="text-4xl font-bold">Welcome To Navilab</h1>
-      <p class="text-xl font-medium opacity-80">
+      <h1 class="text-4xl font-bold text-white">Welcome To Navilab</h1>
+      <p class="text-xl font-medium text-white opacity-80">
         Lorem ipsum lorem ipsum lorem
       </p>
     </div>
@@ -24,7 +24,7 @@
         aria-label="Go to projects page"
       >
         <LucideMap :size="80" class="stroke-[1.2]" />
-        <h2 class="text-2xl font-semibold">Projects</h2>
+        <h2 class="text-2xl font-semibold text-white">Projects</h2>
       </button>
       <!-- Link: Detectors -->
       <button
@@ -37,7 +37,7 @@
         aria-label="Go to detectors page"
       >
         <LucideRadio :size="80" class="stroke-[1.2]" />
-        <h2 class="text-2xl font-semibold">Detectors</h2>
+        <h2 class="text-2xl font-semibold text-white">Detectors</h2>
       </button>
     </div>
   </div>

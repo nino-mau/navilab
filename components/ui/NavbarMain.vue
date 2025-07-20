@@ -4,7 +4,7 @@
     <div class="flex flex-row items-center">
       <IconsSite />
 
-      <h2 class="ml-3 text-2xl font-bold">NAVILAB</h2>
+      <h2 class="ml-3 text-2xl font-bold text-white">NAVILAB</h2>
     </div>
 
     <!-- LoggedIn Menu -->
