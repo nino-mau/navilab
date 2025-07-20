@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
-@import './variables.css';
+@import './variables/index.css';
 @import './utilities.css';
 @import './hover.css';
 
