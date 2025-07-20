@@ -1,4 +1,5 @@
 import tailwindcss from '@tailwindcss/vite';
+import { fileURLToPath } from 'url';
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
@@ -20,6 +21,13 @@ export default defineNuxtConfig({
       betterAuthUrl: process.env.BETTER_AUTH_URL,
     },
   },
+
+  // Aliases
+  alias: {
+    '@services': fileURLToPath(new URL('./server/models/', import.meta.url)),
+    '@server': fileURLToPath(new URL('./server/', import.meta.url)),
+  },
+
   fonts: {
     defaults: {
       weights: [300, 400, 500, 600, 700, 800, 900],
