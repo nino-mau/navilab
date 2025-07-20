@@ -7,6 +7,7 @@ services:
       - '3000:3000'
     environment:
       - NODE_ENV=development
+      - DATABASE_URL=${DATABASE_URL}
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
       - DB_USER=${DB_USER}
@@ -16,10 +17,12 @@ services:
       - .:/home/node/app
       - /home/node/app/node_modules
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     networks:
       - nuxt-network
     restart: unless-stopped
+    command: sh -c "pnpm run db:push && pnpm dev"
 
   postgres:
     image: postgis/postgis:latest
@@ -31,7 +34,7 @@ services:
       - '5432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - nuxt-network
     restart: unless-stopped
