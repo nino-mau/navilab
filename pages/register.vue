@@ -1,5 +1,43 @@
 <template>
   <div class="flex size-full items-center justify-center">
+    <!-- Modal: Register Success -->
+    <UModal v-model:open="isRegisterSuccessModalOpen">
+      <template #content>
+        <div
+          class="card-border-top-success flex flex-col items-center justify-center gap-4 px-5 pt-13 pb-5"
+        >
+          <div
+            class="bg-success mb-2 flex size-15 items-center justify-center rounded-md"
+          >
+            <LucideCheckCheck :size="30" />
+          </div>
+
+          <h1 class="!text-text text-xl font-semibold">
+            Account successfully created
+          </h1>
+
+          <p class="!text-text text-center">
+            Hi
+            <span class="text-primary font-bold">{{ formValues.username }}</span
+            >. You're now able to join projects, add detectors and use all of
+            our features.
+          </p>
+
+          <UButton
+            class="mt-5 w-full justify-center"
+            size="xl"
+            color="success"
+            label="Continue"
+            icon="i-lucide-arrow-right"
+            @click="
+              toggleRegisterSuccessModal();
+              navigateTo('/');
+            "
+          />
+        </div>
+      </template>
+    </UModal>
+
     <div
       class="bg-background-elevated card-border-top-primary flex w-[500px] flex-col gap-10 rounded-md p-6 pt-8 shadow-md"
     >
@@ -167,6 +205,7 @@ const formValues = reactive<Partial<z.output<typeof registerSchema>>>({
 const showPassword = ref<boolean>(false);
 const showConfirmPassowrd = ref<boolean>(false);
 const emailFieldError = ref<string | undefined>(undefined);
+const isRegisterSuccessModalOpen = ref<boolean>(false);
 
 const floatingLabelStyle = cn(
   'text-text2 peer-focus:text-text2 rounded-sm peer-placeholder-shown:text-dimmed peer-focus:bg-background-elevated',
@@ -175,6 +214,10 @@ const floatingLabelStyle = cn(
   'peer-placeholder-shown:top-[8px] peer-placeholder-shown:text-base peer-placeholder-shown:bg-default peer-placeholder-shown:font-normal',
   'peer-focus:-top-2.5 peer-focus:text-sm peer-focus:font-medium'
 );
+
+const toggleRegisterSuccessModal = () => {
+  isRegisterSuccessModalOpen.value = !isRegisterSuccessModalOpen.value;
+};
 
 async function onFormSubmit(
   event: FormSubmitEvent<z.output<typeof registerSchema>>
@@ -214,5 +257,6 @@ async function onFormSubmit(
     return;
   }
 
+  toggleRegisterSuccessModal();
 }
 </script>
