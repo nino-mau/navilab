@@ -42,5 +42,4 @@
 
 <script setup lang="ts">
 const session = await authClient.getSession();
-});
 </script>

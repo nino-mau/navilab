@@ -88,7 +88,7 @@ import * as z from 'zod';
 import { authClient } from '~/utils/auth-client';
 
 definePageMeta({
-  layout: 'blank',
+  layout: 'blank'
 });
 
 const toast = useToast();
@@ -97,13 +97,13 @@ const toast = useToast();
 const loginSchema = z.object({
   email: z.email().min(1, { message: 'Email is required' }),
   password: z.string().min(1, { message: 'Password is required' }),
-  rememberMe: z.boolean(),
+  rememberMe: z.boolean()
 });
 
 const formValues = reactive<Partial<z.output<typeof loginSchema>>>({
   email: '',
   password: '',
-  rememberMe: false,
+  rememberMe: false
 });
 
 const showPassword = ref<boolean>(false);
@@ -124,7 +124,7 @@ async function onFormSubmit(
   const { data, error } = await authClient.signIn.email({
     email: event.data.email,
     password: event.data.password,
-    rememberMe: event.data.rememberMe,
+    rememberMe: event.data.rememberMe
   });
 
   if (error) {
@@ -149,7 +149,7 @@ async function onFormSubmit(
         title: 'Error',
         description: 'Login failed due to unexpected error',
         color: 'error',
-        icon: 'i-lucide-circle-x',
+        icon: 'i-lucide-circle-x'
       });
     }
     return;
@@ -160,7 +160,7 @@ async function onFormSubmit(
     title: 'Success',
     description: 'You successfully signed in to your account',
     color: 'success',
-    icon: 'i-lucide-circle-check',
+    icon: 'i-lucide-circle-check'
   });
 }
 </script>

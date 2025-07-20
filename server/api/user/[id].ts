@@ -1,4 +1,4 @@
-import { fetchUserById } from '~/server/services/user.service';
+import { fetchUserById } from '@server/services/user.service';
 
 export default defineEventHandler(async (event) => {
   const userId = getRouterParam(event, 'id');

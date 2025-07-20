@@ -11,26 +11,26 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/ui',
     '@nuxtjs/color-mode',
-    'nuxt-lucide-icons',
+    'nuxt-lucide-icons'
   ],
 
   runtimeConfig: {
     databaseUrl: process.env.POSTGRES_DB_URL,
     public: {
-      betterAuthUrl: process.env.BETTER_AUTH_URL,
-    },
+      betterAuthUrl: process.env.BETTER_AUTH_URL
+    }
   },
 
   // Aliases
   alias: {
     '@services': fileURLToPath(new URL('./server/models/', import.meta.url)),
-    '@server': fileURLToPath(new URL('./server/', import.meta.url)),
+    '@server': fileURLToPath(new URL('./server/', import.meta.url))
   },
 
   fonts: {
     defaults: {
       weights: [300, 400, 500, 600, 700, 800, 900],
-      styles: ['normal', 'italic'],
+      styles: ['normal', 'italic']
     },
     families: [
       {
@@ -38,15 +38,14 @@ export default defineNuxtConfig({
         provider: 'google',
         weights: [300, 400, 500, 600, 700, 800],
         styles: ['normal', 'italic'],
-        display: 'swap',
-      },
-    ],
+        display: 'swap'
+      }
+    ]
   },
-
 
   colorMode: {
     preference: 'light',
-    fallback: 'light',
+    fallback: 'light'
   },
 
   ui: {
@@ -58,8 +57,8 @@ export default defineNuxtConfig({
         'info',
         'success',
         'warning',
-        'error',
-      ],
-    },
-  },
+        'error'
+      ]
+    }
+  }
 });
