@@ -8,14 +8,14 @@
     </div>
 
     <!-- LoggedIn Menu -->
-    <div v-if="props.isLoggedIn" class="flex flex-row items-center gap-5">
+    <div v-if="session.data" class="flex flex-row items-center gap-5">
       <!-- Button: Settings -->
       <LucideSettings :size="24" />
       <!-- Button: Notifications -->
       <LucideBell :size="24" />
       <div class="flex items-center gap-2.5">
-        <p>Username</p>
-        <LucideUserCircle :size="40" class="stroke-[1.4]" />
+        <p class="text-white">{{ session.data.user.name }}</p>
+        <LucideUserCircle :size="40" class="stroke-[1.2]" />
       </div>
     </div>
 
@@ -41,10 +41,6 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  isLoggedIn: {
-    type: Boolean,
-    default: false,
-  },
+const session = await authClient.getSession();
 });
 </script>
