@@ -226,7 +226,7 @@ async function onFormSubmit(
   const { data, error } = await authClient.signUp.email({
     name: event.data.username,
     email: event.data.email,
-    password: 'testtest',
+    password: event.data.password,
   });
 
   if (error) {
