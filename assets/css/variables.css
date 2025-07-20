@@ -1,4 +1,4 @@
-@theme {
+@theme static {
   --font-display: 'Inter', 'sans-serif';
 
   --color-white: #fff;
@@ -58,4 +58,9 @@
   */
 
   --color-grad-primary: linear-gradient(135deg, #2c8896 0%, #1d5963 100%);
+}
+
+:root {
+  /* --ui-text: #4a5568 !important; */
+  --ui-text-highlighted: #2d374b !important;
 }
