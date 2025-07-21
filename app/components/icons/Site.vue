@@ -1,6 +1,7 @@
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 45 30"
     :width="props.width"
     :height="props.height"
     fill="none"
@@ -32,15 +33,15 @@
 const props = defineProps({
   width: {
     type: Number,
-    default: 45,
+    default: 45
   },
   height: {
     type: Number,
-    default: 30,
+    default: 30
   },
   color: {
     type: String,
-    default: 'white',
-  },
+    default: 'white'
+  }
 });
 </script>
