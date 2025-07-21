@@ -1,5 +1,5 @@
 <template>
-  <div class="flex size-full items-center justify-center">
+  <div class="flex size-full flex-col items-center justify-center gap-5">
     <div
       class="bg-background-elevated card-border-top-primary flex w-[500px] flex-col gap-10 rounded-md p-6 pt-8 shadow-md"
     >
@@ -70,14 +70,23 @@
             />
 
             <!-- Link: Forgot Password -->
-            <p class="text-primary font-medium hover:underline">
+            <ULink class="text-primary hover:text-primary-600 font-medium">
               Forgot Password?
-            </p>
+            </ULink>
           </div>
         </div>
         <UButton type="submit" size="xl" class="block w-full" label="Login" />
       </UForm>
     </div>
+    <p class="text-text z-10 items-center">
+      Don't have an account?
+      <ULink
+        to="/register"
+        class="text-primary hover:text-primary-600 font-semibold"
+      >
+        Sign up
+      </ULink>
+    </p>
   </div>
 </template>
 

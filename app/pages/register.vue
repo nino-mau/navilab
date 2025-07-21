@@ -1,5 +1,5 @@
 <template>
-  <div class="flex size-full items-center justify-center">
+  <div class="flex size-full flex-col items-center justify-center gap-5">
     <!-- Modal: Register Success -->
     <UModal v-model:open="isRegisterSuccessModalOpen">
       <template #content>
@@ -155,6 +155,16 @@
         />
       </UForm>
     </div>
+
+    <p class="text-text z-10 items-center">
+      Already have an account?
+      <ULink
+        to="/login"
+        class="text-primary hover:text-primary-600 font-semibold"
+      >
+        Sign in
+      </ULink>
+    </p>
   </div>
 </template>
 
@@ -165,7 +175,7 @@ import * as z from 'zod';
 import { authClient } from '~/utils/auth-client';
 
 definePageMeta({
-  layout: 'blank',
+  layout: 'blank'
 });
 
 const toast = useToast();
@@ -178,7 +188,7 @@ const registerSchema = z
       .min(3, { message: 'Username must be at least 3 characters' })
       .max(30, { message: 'Username must be no more than 30 characters' })
       .regex(/^[a-zA-Z0-9_]+$/, {
-        message: 'Username contains invalide characters',
+        message: 'Username contains invalide characters'
       }),
     email: z
       .email({ message: 'Invalid email format' })
@@ -188,18 +198,18 @@ const registerSchema = z
       .min(8, { message: 'Password must be at least 8 characters' }),
     confirmPassword: z
       .string()
-      .min(1, { message: 'Please confirm your password' }),
+      .min(1, { message: 'Please confirm your password' })
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: 'Password does not match',
-    path: ['confirmPassword'],
+    path: ['confirmPassword']
   });
 
 const formValues = reactive<Partial<z.output<typeof registerSchema>>>({
   username: '',
   email: '',
   password: '',
-  confirmPassword: '',
+  confirmPassword: ''
 });
 
 const showPassword = ref<boolean>(false);
@@ -226,7 +236,7 @@ async function onFormSubmit(
   const { data, error } = await authClient.signUp.email({
     name: event.data.username,
     email: event.data.email,
-    password: event.data.password,
+    password: event.data.password
   });
 
   if (error) {
@@ -251,7 +261,7 @@ async function onFormSubmit(
         title: 'Error',
         description: 'Register failed due to unexpected error',
         color: 'error',
-        icon: 'i-lucide-circle-x',
+        icon: 'i-lucide-circle-x'
       });
     }
     return;
