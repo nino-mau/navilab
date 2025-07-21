@@ -28,6 +28,7 @@
         variant="ghost"
         color="neutral"
         class="text-white hover:bg-white/10"
+        to="/login"
       />
       <!-- Button: Sign Up -->
       <UButton
@@ -35,6 +36,7 @@
         class="font-semibold"
         label="Sign up"
         color="secondary"
+        to="/register"
       />
     </div>
   </div>
