@@ -25,6 +25,7 @@
           <template #default="{ open }">
             <UAvatar
               size="xl"
+              :src="avatarUrl"
               :alt="username.toUpperCase()"
               class="cursor-pointer hover:ring-4 hover:ring-white/10"
               :class="{ 'ring-3 ring-black/10': open }"
@@ -62,14 +63,20 @@ import type { DropdownMenuItem } from '@nuxt/ui';
 
 const session = await authClient.getSession();
 
+const rc = useRuntimeConfig();
 
 const username = ref<string>(upperFirst(session.data?.user?.name || ''));
 
+const avatarUrl =
+  rc.public.avatarPlaceholderUrl + `&seed=${session.data?.user?.name}`;
 
 const profileDropdownMenuItems = ref<DropdownMenuItem[][]>([
   [
     {
       label: username.value,
+      avatar: {
+        src: avatarUrl
+      },
       type: 'label'
     }
   ],
