@@ -3,6 +3,7 @@
 @import './variables/index.css';
 @import './utilities.css';
 @import './hover.css';
+@import './transitions.css';
 
 /**
 * -- Global Styles --
