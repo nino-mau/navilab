@@ -17,7 +17,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     databaseUrl: process.env.POSTGRES_DB_URL,
     public: {
-      betterAuthUrl: process.env.BETTER_AUTH_URL
+      betterAuthUrl: process.env.BETTER_AUTH_URL,
+      avatarPlaceholderUrl: process.env.AVATAR_PLACEHOLDER_URL
     }
   },
 

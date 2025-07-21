@@ -14,8 +14,23 @@
       <!-- Button: Notifications -->
       <LucideBell :size="24" />
       <div class="flex items-center gap-2.5">
-        <p class="text-white">{{ session.data.user.name }}</p>
-        <LucideUserCircle :size="40" class="stroke-[1.2]" />
+        <p class="text-white">{{ username }}</p>
+        <!-- DropdownMenu: User Profile -->
+        <UDropdownMenu
+          :items="profileDropdownMenuItems"
+          :ui="{
+            content: 'w-48'
+          }"
+        >
+          <template #default="{ open }">
+            <UAvatar
+              size="xl"
+              :alt="username.toUpperCase()"
+              class="cursor-pointer hover:ring-4 hover:ring-white/10"
+              :class="{ 'ring-3 ring-black/10': open }"
+            />
+          </template>
+        </UDropdownMenu>
       </div>
     </div>
 
@@ -43,5 +58,34 @@
 </template>
 
 <script setup lang="ts">
+import type { DropdownMenuItem } from '@nuxt/ui';
+
 const session = await authClient.getSession();
+
+
+const username = ref<string>(upperFirst(session.data?.user?.name || ''));
+
+
+const profileDropdownMenuItems = ref<DropdownMenuItem[][]>([
+  [
+    {
+      label: username.value,
+      type: 'label'
+    }
+  ],
+  [
+    {
+      label: 'Logout',
+      icon: 'i-lucide-log-out',
+      ui: {
+        itemLeadingIcon: '!text-dimmed hover:!text-dimmed',
+        item: 'hover:bg-gray-100'
+      },
+      async onSelect() {
+        await authClient.signOut();
+        navigateTo('/login');
+      }
+    }
+  ]
+]);
 </script>
