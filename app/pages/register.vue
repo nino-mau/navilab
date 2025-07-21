@@ -1,5 +1,20 @@
 <template>
-  <div class="flex size-full flex-col items-center justify-center gap-5">
+  <div
+    class="relative flex size-full flex-col items-center justify-center gap-5"
+  >
+    <!-- Button: Go Home -->
+    <UButton
+      variant="link"
+      to="/"
+      class="absolute top-2 left-2 flex flex-row items-center gap-1"
+      aria-label="Go to home page"
+    >
+      <IconsSite color="var(--color-text)" class="scale-[70%]" />
+      <h2 class="text-text text-lg font-semibold" aria-hidden="true">
+        NAVILAB
+      </h2>
+    </UButton>
+
     <!-- Modal: Register Success -->
     <UModal v-model:open="isRegisterSuccessModalOpen">
       <template #content>

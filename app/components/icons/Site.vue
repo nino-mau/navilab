@@ -5,6 +5,7 @@
     :width="props.width"
     :height="props.height"
     fill="none"
+    aria-hidden="true"
   >
     <path
       :fill="props.color"

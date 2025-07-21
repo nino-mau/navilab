@@ -1,11 +1,26 @@
 <template>
-  <div class="flex size-full flex-col items-center justify-center gap-5">
+  <div
+    class="relative flex size-full flex-col items-center justify-center gap-5"
+  >
+    <!-- Button: Go Home -->
+    <UButton
+      variant="link"
+      to="/"
+      class="absolute top-2 left-2 flex flex-row items-center gap-1"
+      aria-label="Go to home page"
+    >
+      <IconsSite color="var(--color-text)" class="scale-[70%]" />
+      <h2 class="text-text text-lg font-semibold" aria-hidden="true">
+        NAVILAB
+      </h2>
+    </UButton>
+
     <div
       class="bg-background-elevated card-border-top-primary flex w-[500px] flex-col gap-10 rounded-md p-6 pt-12 shadow-md"
     >
       <!-- Form Title -->
-      <div class="flex flex-col items-center">
-        <IconsSite :width="40" :height="40" color="var(--color-primary)" />
+      <div class="flex flex-col items-center gap-2">
+        <IconsSite color="var(--color-primary)" />
         <h1 class="!text-text2 text-center text-xl font-medium">
           Sign in to Navilab
         </h1>
