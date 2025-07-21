@@ -21,6 +21,11 @@ export default defineNuxtConfig({
     }
   },
 
+  app: {
+    layoutTransition: { name: 'layout', mode: 'out-in' },
+    pageTransition: { name: 'page', mode: 'out-in' }
+  },
+
   // Aliases
   alias: {
     '@services': fileURLToPath(new URL('./server/models/', import.meta.url)),
