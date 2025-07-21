@@ -1,10 +1,15 @@
 <template>
   <div class="flex size-full flex-col items-center justify-center gap-5">
     <div
-      class="bg-background-elevated card-border-top-primary flex w-[500px] flex-col gap-10 rounded-md p-6 pt-8 shadow-md"
+      class="bg-background-elevated card-border-top-primary flex w-[500px] flex-col gap-10 rounded-md p-6 pt-12 shadow-md"
     >
       <!-- Form Title -->
-      <h1 class="!text-text2 text-center text-4xl font-semibold">Login</h1>
+      <div class="flex flex-col items-center">
+        <IconsSite :width="40" :height="40" color="var(--color-primary)" />
+        <h1 class="!text-text2 text-center text-xl font-medium">
+          Sign in to Navilab
+        </h1>
+      </div>
 
       <!-- Form -->
       <UForm
