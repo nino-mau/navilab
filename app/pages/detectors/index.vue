@@ -8,6 +8,7 @@
       icon="i-lucide-arrow-left"
       color="neutral"
       class="w-fit"
+      to="/"
     />
 
     <!-- Heading Section -->
@@ -29,6 +30,7 @@
           Detector"
         icon="i-lucide-plus"
         class="h-fit"
+        to="/detectors/create"
       />
     </div>
 
