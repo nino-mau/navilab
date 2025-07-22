@@ -18,6 +18,7 @@
     "@nuxtjs/color-mode": "3.5.2",
     "better-auth": "^1.2.12",
     "cn-lib": "^0.0.6",
+    "dayjs": "^1.11.13",
     "dotenv": "^17.2.0",
     "drizzle-orm": "^0.44.2",
     "eslint": "^9.31.0",
