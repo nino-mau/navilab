@@ -111,7 +111,7 @@
 
 <script setup lang="ts">
 import type { TableColumn } from '@nuxt/ui';
-import type { DetectorStatus } from '~~/shared/types/data';
+import type { DetectorStatus, DetectorType } from '~~/shared/types/detector';
 
 const UButton = resolveComponent('UButton');
 const UBadge = resolveComponent('UBadge');
@@ -119,7 +119,7 @@ const UChip = resolveComponent('UChip');
 
 type DetectorsTable = {
   deviceName: string;
-  type: DetectorRole;
+  type: DetectorType;
   status: DetectorStatus;
   lastData: string;
   project: string;
