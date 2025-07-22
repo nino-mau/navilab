@@ -12,5 +12,12 @@ docker compose exec -T postgres pg_dump -U admin \
   --exclude-schema=tiger_data \
   --exclude-schema=topology \
   nuxt_db > ./server/backups/db_dump.sql
+```
 
+### Connect to nuxt_db Database CLI
+
+Connect to the `nuxt_db` database using the psql command-line interface.
+
+```bash
+docker compose exec postgres psql -d nuxt_db -U admin
 ```
