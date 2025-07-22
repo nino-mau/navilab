@@ -100,9 +100,9 @@ export const detector = pgTable('detector', {
     .references(() => user.id, { onDelete: 'cascade' }),
   name: varchar({ length: 255 }).notNull(),
   serialNumber: text('serial_number').notNull(),
-  model: varchar({ length: 255 }).notNull(),
-  brand: varchar({ length: 255 }).notNull(),
   type: detectorType().notNull(),
+  model: varchar({ length: 255 }),
+  brand: varchar({ length: 255 }),
   password: text('password').notNull()
 });
 
