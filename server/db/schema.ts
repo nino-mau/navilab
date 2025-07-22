@@ -9,7 +9,7 @@ import {
   pgEnum
 } from 'drizzle-orm/pg-core';
 
-export const detectorRole = pgEnum('detector_role', [
+export const detectorType = pgEnum('detector_type', [
   'Human',
   'Audio',
   'Video'
@@ -102,7 +102,8 @@ export const detector = pgTable('detector', {
   serialNumber: text('serial_number').notNull(),
   model: varchar({ length: 255 }).notNull(),
   brand: varchar({ length: 255 }).notNull(),
-  role: detectorRole().notNull()
+  type: detectorType().notNull(),
+  password: text('password').notNull()
 });
 
 export const project = pgTable('project', {
