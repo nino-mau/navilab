@@ -55,10 +55,4 @@
   --color-text2: var(--color-slate-600);
 
   --color-background-elevated: #f1f5f9;
-
-  /**
-  *  --- Gradients
-  */
-
-  --color-grad-primary: linear-gradient(135deg, #2c8896 0%, #1d5963 100%);
 }
