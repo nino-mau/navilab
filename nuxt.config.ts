@@ -30,6 +30,7 @@ export default defineNuxtConfig({
   // Aliases
   alias: {
     '@services': fileURLToPath(new URL('./server/models/', import.meta.url)),
+    '@shared': fileURLToPath(new URL('./shared/', import.meta.url)),
     '@server': fileURLToPath(new URL('./server/', import.meta.url))
   },
 
