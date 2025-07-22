@@ -6,18 +6,18 @@ import {
   varchar,
   date,
   boolean,
-  pgEnum,
+  pgEnum
 } from 'drizzle-orm/pg-core';
 
 export const detectorRole = pgEnum('detector_role', [
   'Human',
   'Audio',
-  'Video',
+  'Video'
 ]);
 export const userRole = pgEnum('user_role', [
   'Product Manager',
   'Contributor',
-  'Admin',
+  'Admin'
 ]);
 
 export const user = pgTable('user', {
@@ -36,7 +36,7 @@ export const user = pgTable('user', {
     .notNull(),
   role: userRole().default('Contributor').notNull(),
   phone: text(),
-  avatarUrl: text('avatar_url'),
+  avatarUrl: text('avatar_url')
 });
 
 export const session = pgTable('session', {
@@ -49,7 +49,7 @@ export const session = pgTable('session', {
   userAgent: text('user_agent'),
   userId: text('user_id')
     .notNull()
-    .references(() => user.id, { onDelete: 'cascade' }),
+    .references(() => user.id, { onDelete: 'cascade' })
 });
 
 export const account = pgTable('account', {
@@ -67,7 +67,7 @@ export const account = pgTable('account', {
   scope: text('scope'),
   password: text('password'),
   createdAt: timestamp('created_at').notNull(),
-  updatedAt: timestamp('updated_at').notNull(),
+  updatedAt: timestamp('updated_at').notNull()
 });
 
 export const verification = pgTable('verification', {
@@ -80,7 +80,7 @@ export const verification = pgTable('verification', {
   ),
   updatedAt: timestamp('updated_at').$defaultFn(
     () => /* @__PURE__ */ new Date()
-  ),
+  )
 });
 
 export const contact = pgTable('contact', {
@@ -90,7 +90,7 @@ export const contact = pgTable('contact', {
     .references(() => detector.id, { onDelete: 'cascade' }),
   timestamp: timestamp({ mode: 'string' }).notNull(),
   type: text().notNull(),
-  geom: geometry({ type: 'point', srid: 4326 }).notNull(),
+  geom: geometry({ type: 'point', srid: 4326 }).notNull()
 });
 
 export const detector = pgTable('detector', {
@@ -102,7 +102,7 @@ export const detector = pgTable('detector', {
   serialNumber: text('serial_number').notNull(),
   model: varchar({ length: 255 }).notNull(),
   brand: varchar({ length: 255 }).notNull(),
-  role: detectorRole().notNull(),
+  role: detectorRole().notNull()
 });
 
 export const project = pgTable('project', {
@@ -118,7 +118,7 @@ export const project = pgTable('project', {
   specieId: text('specie_id')
     .notNull()
     .references(() => specie.id, { onDelete: 'cascade' }),
-  area: geometry({ type: 'polygon', srid: 4326 }).notNull(),
+  area: geometry({ type: 'polygon', srid: 4326 }).notNull()
 });
 
 export const projectContributors = pgTable('project_contributors', {
@@ -127,7 +127,7 @@ export const projectContributors = pgTable('project_contributors', {
     .references(() => project.id, { onDelete: 'cascade' }),
   contributorId: text('contributor_id')
     .notNull()
-    .references(() => user.id, { onDelete: 'cascade' }),
+    .references(() => user.id, { onDelete: 'cascade' })
 });
 
 export const projectDetectors = pgTable('project_detectors', {
@@ -136,7 +136,7 @@ export const projectDetectors = pgTable('project_detectors', {
     .references(() => detector.id, { onDelete: 'cascade' }),
   projectId: text('project_id')
     .notNull()
-    .references(() => project.id, { onDelete: 'cascade' }),
+    .references(() => project.id, { onDelete: 'cascade' })
 });
 
 export const projectInvite = pgTable('project_invite', {
@@ -146,7 +146,7 @@ export const projectInvite = pgTable('project_invite', {
   userId: text('user_id')
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
-  id: text('id').primaryKey(),
+  id: text('id').primaryKey()
 });
 
 export const projectMessage = pgTable('project_message', {
@@ -161,7 +161,7 @@ export const projectMessage = pgTable('project_message', {
     .notNull()
     .references(() => contact.id, { onDelete: 'cascade' }),
   content: text().notNull(),
-  issystemmessage: boolean().default(false).notNull(),
+  issystemmessage: boolean().default(false).notNull()
 });
 
 export const projectRequest = pgTable('project_request', {
@@ -172,12 +172,12 @@ export const projectRequest = pgTable('project_request', {
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
   message: text().notNull(),
-  id: text('id').primaryKey(),
+  id: text('id').primaryKey()
 });
 
 export const specie = pgTable('specie', {
   id: text('id').primaryKey(),
   name: varchar({ length: 255 }).notNull(),
   latinName: varchar('latin_name', { length: 255 }).notNull(),
-  acronym: varchar({ length: 255 }).notNull(),
+  acronym: varchar({ length: 255 }).notNull()
 });
