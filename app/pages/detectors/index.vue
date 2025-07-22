@@ -54,12 +54,12 @@
       <div
         class="hover-lift col-span-1 flex flex-col justify-between rounded-md border-1 border-green-600/30 bg-gradient-to-br from-green-50 to-green-100/50 p-6 shadow-md"
       >
-        <div class="flex flex-row items-center gap-2 text-green-700">
-          <LucideActivity :size="16" class="!text-inherit" />
+        <div class="flex flex-row items-center gap-2 text-green-600">
+          <LucideWifi :size="16" class="!text-inherit" />
           <p class="text-sm font-medium text-inherit">Online</p>
         </div>
         <div>
-          <p class="text-4xl font-bold text-green-700">4</p>
+          <p class="text-4xl font-bold text-green-600">4</p>
           <p class="text-xs text-green-600">Connected now</p>
         </div>
       </div>
@@ -68,12 +68,12 @@
       <div
         class="hover-lift col-span-1 flex flex-col justify-between rounded-md border-1 border-red-600/30 bg-gradient-to-br from-red-50 to-red-100/50 p-6 shadow-md"
       >
-        <div class="flex flex-row items-center gap-2 text-red-700">
-          <LucidePowerOff :size="16" class="!text-inherit" />
+        <div class="flex flex-row items-center gap-2 text-red-600">
+          <LucideWifiOff :size="16" class="!text-inherit" />
           <p class="text-sm font-medium text-inherit">Offline</p>
         </div>
         <div>
-          <p class="text-4xl font-bold text-red-700">4</p>
+          <p class="text-4xl font-bold text-red-600">4</p>
           <p class="text-xs text-red-600">Disconnected</p>
         </div>
       </div>
@@ -82,12 +82,12 @@
       <div
         class="hover-lift col-span-1 flex flex-col justify-between rounded-md border-1 border-amber-600/30 bg-gradient-to-br from-amber-50 to-amber-100/50 p-6 shadow-md duration-200"
       >
-        <div class="flex flex-row items-center gap-2 text-amber-700">
-          <LucideBluetoothOff :size="16" class="!text-inherit" />
+        <div class="flex flex-row items-center gap-2 text-amber-600">
+          <LucideWifiCog :size="16" class="!text-inherit" />
           <p class="text-sm font-medium text-inherit">Inactive</p>
         </div>
         <div>
-          <p class="text-4xl font-bold text-amber-700">4</p>
+          <p class="text-4xl font-bold text-amber-600">4</p>
           <p class="text-xs text-amber-600">Inactive now</p>
         </div>
       </div>
