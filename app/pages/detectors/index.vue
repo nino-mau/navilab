@@ -61,7 +61,13 @@
           <p class="text-sm font-medium text-inherit">Online</p>
         </div>
         <div>
-          <p class="text-4xl font-bold text-green-600">4</p>
+          <p class="text-4xl font-bold text-green-600">
+            {{
+              detectorStore.detectors.filter(
+                (detector) => detector.status === 'online'
+              ).length
+            }}
+          </p>
           <p class="text-xs text-green-600">Connected now</p>
         </div>
       </div>
@@ -75,7 +81,13 @@
           <p class="text-sm font-medium text-inherit">Offline</p>
         </div>
         <div>
-          <p class="text-4xl font-bold text-red-600">4</p>
+          <p class="text-4xl font-bold text-red-600">
+            {{
+              detectorStore.detectors.filter(
+                (detector) => detector.status === 'offline'
+              ).length
+            }}
+          </p>
           <p class="text-xs text-red-600">Disconnected</p>
         </div>
       </div>
@@ -89,7 +101,13 @@
           <p class="text-sm font-medium text-inherit">Inactive</p>
         </div>
         <div>
-          <p class="text-4xl font-bold text-amber-600">4</p>
+          <p class="text-4xl font-bold text-amber-600">
+            {{
+              detectorStore.detectors.filter(
+                (detector) => detector.status === 'inactive'
+              ).length
+            }}
+          </p>
           <p class="text-xs text-amber-600">Inactive now</p>
         </div>
       </div>
