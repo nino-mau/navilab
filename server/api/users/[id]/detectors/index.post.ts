@@ -19,7 +19,7 @@ const dataValidationSchema = z.object({
 /**
  * Create a detector in database
  *
- * @POST /api/detector
+ * @POST /api/users/[id]/detectors
  */
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, dataValidationSchema.parse);
