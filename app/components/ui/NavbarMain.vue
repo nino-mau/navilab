@@ -1,5 +1,7 @@
 <template>
-  <div class="bg-primary-500 flex h-[70px] flex-row justify-between px-6">
+  <div
+    class="bg-primary-500 flex h-[65px] min-h-[65px] flex-row justify-between px-6"
+  >
     <!-- Site Title -->
     <div class="flex flex-row items-center">
       <IconsSite />
