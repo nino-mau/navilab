@@ -11,7 +11,8 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/ui',
     '@nuxtjs/color-mode',
-    'nuxt-lucide-icons'
+    'nuxt-lucide-icons',
+    '@pinia/nuxt'
   ],
 
   runtimeConfig: {
