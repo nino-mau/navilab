@@ -103,7 +103,7 @@
     <!-- Detectors Table -->
     <div class="card h-fit w-full bg-white p-0">
       <UTable
-        :data="detectorsTableData"
+        :data="detectorStore.detectors"
         :columns="detectorsTableColumns"
         :loading="detectorsTableLoading"
         class="flex-1"
@@ -114,16 +114,7 @@
 
 <script setup lang="ts">
 import type { TableColumn } from '@nuxt/ui';
-import dayjs from 'dayjs';
-import type { DetectorStatus, DetectorType } from '~~/shared/types/detector';
-
-type DetectorsTable = {
-  deviceName: string;
-  type: DetectorType;
-  status: DetectorStatus;
-  lastData: string;
-  project: string;
-};
+import type { DetectorStatus } from '~~/shared/types/detector';
 
 const session = await authClient.getSession();
 const detectorStore = useDetectorsStore();
@@ -134,12 +125,10 @@ const UChip = resolveComponent('UChip');
 
 const detectorsTableLoading = ref<boolean>(false);
 
-const detectorsTableData = ref<DetectorsTable[]>([]);
-
-const detectorsTableColumns: TableColumn<DetectorsTable>[] = [
+const detectorsTableColumns: TableColumn<DetectorClient>[] = [
   {
-    accessorKey: 'deviceName',
-    header: 'Device Name',
+    accessorKey: 'name',
+    header: 'Detector Name',
     cell({ row }) {
       const colorMap = {
         online: 'success',
@@ -155,7 +144,7 @@ const detectorsTableColumns: TableColumn<DetectorsTable>[] = [
         h(
           'p',
           { class: 'font-semibold !text-default text-sm' },
-          row.getValue('deviceName')
+          row.getValue('name')
         )
       ]);
     }
@@ -191,8 +180,15 @@ const detectorsTableColumns: TableColumn<DetectorsTable>[] = [
     }
   },
   {
-    accessorKey: 'project',
-    header: 'Project'
+    accessorKey: 'projectName',
+    header: 'Project',
+    cell({ row }) {
+      const projectName = row.getValue('projectName');
+      if (!projectName || projectName === '') {
+        return 'No Project';
+      }
+      return projectName;
+    }
   },
   {
     accessorKey: 'lastData',
@@ -201,7 +197,6 @@ const detectorsTableColumns: TableColumn<DetectorsTable>[] = [
       return h(
         UBadge,
         {
-          class: 'capitalize',
           size: 'md',
           variant: 'subtle',
           color: 'neutral'
@@ -241,21 +236,10 @@ const detectorsTableColumns: TableColumn<DetectorsTable>[] = [
 ];
 
 onMounted(async () => {
-  // Fetch detectors data
+  // Update detectors state
   try {
     detectorsTableLoading.value = true;
     await detectorStore.fetch(session.data!.user.id);
-
-    // Adapt detectors data for the table data struct
-    detectorsTableData.value = detectorStore.detectors.map((detector) => {
-      return {
-        deviceName: detector.name,
-        type: detector.type,
-        status: 'offline',
-        lastData: dayjs().format(),
-        project: 'No Project'
-      } as DetectorsTable;
-    });
   } finally {
     detectorsTableLoading.value = false;
   }
