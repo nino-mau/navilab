@@ -218,13 +218,18 @@ const detectorsTableColumns: TableColumn<DetectorsTable>[] = [
         th: 'text-center'
       }
     },
-    cell: () => {
+    cell: ({ row }) => {
       return h('div', { class: 'flex flex-row justify-center gap-3' }, [
+        // Button: Delete Detector
         h(UButton, {
           icon: 'i-lucide-trash-2',
           color: 'error',
-          variant: 'ghost'
+          variant: 'ghost',
+          onClick() {
+            detectorStore.delete(row.original.id, session.data!.user.id);
+          }
         }),
+        // Button: Edit Detector
         h(UButton, {
           icon: 'i-lucide-square-pen',
           color: 'neutral',
