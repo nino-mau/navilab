@@ -1,6 +1,15 @@
 import type { DetectorType } from '~~/shared/types/detector';
 import db from '../db/client';
 import { detector } from '../db/schema';
+import { eq } from 'drizzle-orm';
+
+export async function fetchUserDetectors(userId: string) {
+  const res = await db
+    .select()
+    .from(detector)
+    .where(eq(detector.creatorId, userId));
+  return res;
+}
 
 /**
  * Create a new detector field in database
