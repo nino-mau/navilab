@@ -236,9 +236,10 @@ const detectorsTableColumns: TableColumn<DetectorsTable>[] = [
 ];
 
 onMounted(async () => {
+  // Fetch detectors data
   try {
     detectorsTableLoading.value = true;
-    await detectorStore.fetch(session.data.user.id);
+    await detectorStore.fetch(session.data!.user.id);
 
     // Adapt detectors data for the table data struct
     detectorsTableData.value = detectorStore.detectors.map((detector) => {
