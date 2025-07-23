@@ -15,6 +15,24 @@ export const useDetectorsStore = defineStore('detectorsStore', {
       }
 
       this.detectors = res._data ?? [];
+    },
+
+    async delete(detectorId: string, userId: string) {
+      const res = await $fetch.raw(
+        `/api/users/${userId}/detectors/${detectorId}`,
+        {
+          method: 'DELETE'
+        }
+      );
+
+      if (!res.ok) {
+        return;
+      }
+
+      // Remove the deleted detector from the state
+      this.detectors = this.detectors.filter(
+        (detector) => detector.id !== detectorId
+      );
     }
   }
 });
