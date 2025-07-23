@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { auth } from '@server/utils/auth';
 import { createDetector } from '~~/server/services/detector.service';
 import { hashPassword } from '~~/shared/utils/bcrypt';
 import { DETECTOR_TYPES } from '~~/shared/utils/constants';
@@ -24,16 +23,12 @@ const dataValidationSchema = z.object({
  */
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, dataValidationSchema.parse);
-  const session = await auth.api.getSession({
-    headers: event.headers
-  });
+  const creatorId = getRouterParam(event, 'id');
 
-  // Get creator id
-  const creatorId = session?.user.id;
   if (!creatorId) {
     throw createError({
-      statusCode: 500,
-      statusMessage: "Can't access user session"
+      statusCode: 400,
+      statusMessage: 'Missing userId'
     });
   }
 
