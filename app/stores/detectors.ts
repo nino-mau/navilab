@@ -1,8 +1,8 @@
-import type { Detector } from '#shared/types/detector';
+import type { DetectorClient } from '#shared/types/detector';
 
 export const useDetectorsStore = defineStore('detectorsStore', {
   state: () => ({
-    detectors: [] as Detector[]
+    detectors: [] as DetectorClient[]
   }),
   actions: {
     async fetch(userId: string) {

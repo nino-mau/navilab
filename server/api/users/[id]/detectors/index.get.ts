@@ -1,4 +1,5 @@
 import { fetchDetectorsById } from '~~/server/services/detector.service';
+import type { DetectorClient } from '~~/shared/types/detector';
 
 /**
  * Return detectors of a user
@@ -18,7 +19,9 @@ export default defineEventHandler(async (event) => {
     const detectorsData = await fetchDetectorsById(userId);
 
     setResponseStatus(event, 200);
-    return detectorsData;
+    return detectorsData.map(
+      ({ password, ...rest }) => rest
+    ) as DetectorClient[];
   } catch (err) {
     const error = err as Error;
     throw createError({
