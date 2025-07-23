@@ -45,7 +45,9 @@
           <p class="text-sm font-medium text-inherit">Total Detectors</p>
         </div>
         <div>
-          <p class="text-text text-4xl font-bold">4</p>
+          <p class="text-text text-4xl font-bold">
+            {{ detectorStore.detectors.length }}
+          </p>
           <p class="text-text2 text-xs">Active devices</p>
         </div>
       </div>
@@ -103,6 +105,7 @@
       <UTable
         :data="detectorsTableData"
         :columns="detectorsTableColumns"
+        :loading="detectorsTableLoading"
         class="flex-1"
       />
     </div>
@@ -111,11 +114,8 @@
 
 <script setup lang="ts">
 import type { TableColumn } from '@nuxt/ui';
+import dayjs from 'dayjs';
 import type { DetectorStatus, DetectorType } from '~~/shared/types/detector';
-
-const UButton = resolveComponent('UButton');
-const UBadge = resolveComponent('UBadge');
-const UChip = resolveComponent('UChip');
 
 type DetectorsTable = {
   deviceName: string;
@@ -125,36 +125,16 @@ type DetectorsTable = {
   project: string;
 };
 
-const detectorsTableData = ref<DetectorsTable[]>([
-  {
-    deviceName: 'Alpha Sensor',
-    type: 'Audio',
-    status: 'online',
-    lastData: '2024-06-01 14:23',
-    project: 'Greenhouse'
-  },
-  {
-    deviceName: 'Bravo Detector',
-    type: 'Audio',
-    status: 'offline',
-    lastData: '2024-05-31 09:12',
-    project: 'Warehouse'
-  },
-  {
-    deviceName: 'Charlie Monitor',
-    type: 'Audio',
-    status: 'inactive',
-    lastData: '2024-05-30 17:45',
-    project: 'Lab'
-  },
-  {
-    deviceName: 'Delta Sensor',
-    type: 'Audio',
-    status: 'online',
-    lastData: '2024-06-01 13:55',
-    project: 'Factory'
-  }
-]);
+const session = await authClient.getSession();
+const detectorStore = useDetectorsStore();
+
+const UButton = resolveComponent('UButton');
+const UBadge = resolveComponent('UBadge');
+const UChip = resolveComponent('UChip');
+
+const detectorsTableLoading = ref<boolean>(false);
+
+const detectorsTableData = ref<DetectorsTable[]>([]);
 
 const detectorsTableColumns: TableColumn<DetectorsTable>[] = [
   {
@@ -254,4 +234,24 @@ const detectorsTableColumns: TableColumn<DetectorsTable>[] = [
     }
   }
 ];
+
+onMounted(async () => {
+  try {
+    detectorsTableLoading.value = true;
+    await detectorStore.fetch(session.data.user.id);
+
+    // Adapt detectors data for the table data struct
+    detectorsTableData.value = detectorStore.detectors.map((detector) => {
+      return {
+        deviceName: detector.name,
+        type: detector.type,
+        status: 'offline',
+        lastData: dayjs().format(),
+        project: 'No Project'
+      } as DetectorsTable;
+    });
+  } finally {
+    detectorsTableLoading.value = false;
+  }
+});
 </script>
