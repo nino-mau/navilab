@@ -7,16 +7,11 @@ import { eq } from 'drizzle-orm';
  * Fetch all detectors of specified user
  */
 export async function fetchDetectorsById(userId: string) {
-  try {
-    const res = await db
-      .select()
-      .from(detector)
-      .where(eq(detector.creatorId, userId));
-    return res;
-  } catch (err) {
-    console.error('[fetchDetectorsById] Failed to fetch detectors: \n', err);
-    throw err;
-  }
+  const res = await db
+    .select()
+    .from(detector)
+    .where(eq(detector.creatorId, userId));
+  return res;
 }
 
 /**
