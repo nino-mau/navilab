@@ -3,12 +3,20 @@ import db from '../db/client';
 import { detector } from '../db/schema';
 import { eq } from 'drizzle-orm';
 
-export async function fetchUserDetectors(userId: string) {
-  const res = await db
-    .select()
-    .from(detector)
-    .where(eq(detector.creatorId, userId));
-  return res;
+/**
+ * Fetch all detectors of specified user
+ */
+export async function fetchDetectorsById(userId: string) {
+  try {
+    const res = await db
+      .select()
+      .from(detector)
+      .where(eq(detector.creatorId, userId));
+    return res;
+  } catch (err) {
+    console.error('[fetchDetectorsById] Failed to fetch detectors: \n', err);
+    throw err;
+  }
 }
 
 /**
