@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-screen w-screen flex-col justify-start">
+  <div class="flex h-screen w-screen flex-col">
     <UiNavbarMain />
     <slot />
   </div>
