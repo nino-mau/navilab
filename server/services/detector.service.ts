@@ -1,6 +1,6 @@
 import type { DetectorType } from '~~/shared/types/detector';
 import db from '../db/client';
-import { detector } from '../db/schema';
+import { detector, project } from '../db/schema';
 import { eq } from 'drizzle-orm';
 
 /**
@@ -8,8 +8,20 @@ import { eq } from 'drizzle-orm';
  */
 export async function fetchDetectorsById(userId: string) {
   const res = await db
-    .select()
+    .select({
+      id: detector.id,
+      creatorId: detector.creatorId,
+      projectId: detector.projectId,
+      name: detector.name,
+      serialNumber: detector.serialNumber,
+      status: detector.status,
+      type: detector.type,
+      projectName: project.name,
+      lastData: detector.lastData,
+      password: detector.password
+    })
     .from(detector)
+    .leftJoin(project, eq(detector.projectId, project.id))
     .where(eq(detector.creatorId, userId));
   return res;
 }

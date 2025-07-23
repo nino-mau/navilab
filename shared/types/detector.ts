@@ -4,7 +4,12 @@ import type { detector } from '../../server/db/schema';
 export type Detector = InferSelectModel<typeof detector>;
 export type DetectorInsert = InferInsertModel<typeof detector>;
 
-export type DetectorClient = Omit<Detector, 'password'>;
+/**
+ * Detector object that is sent to the client.
+ */
+export type DetectorClient = Omit<Detector, 'password'> & {
+  projectName?: string;
+};
 
 export type DetectorType = 'Human' | 'Audio' | 'Video';
 
