@@ -15,6 +15,17 @@ export async function fetchDetectorsById(userId: string) {
 }
 
 /**
+ * Delete a detector by it's id
+ */
+export async function deleteDetectorById(detectorId: string) {
+  const res = await db
+    .delete(detector)
+    .where(eq(detector.id, detectorId))
+    .returning({ deletedId: detector.id });
+  return res;
+}
+
+/**
  * Create a new detector field in database
  */
 export async function createDetector(
