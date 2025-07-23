@@ -14,6 +14,11 @@ export const detectorType = pgEnum('detector_type', [
   'Audio',
   'Video'
 ]);
+export const detectorStatus = pgEnum('detector_status', [
+  'online',
+  'offline',
+  'inactive'
+]);
 export const userRole = pgEnum('user_role', [
   'Product Manager',
   'Contributor',
@@ -98,11 +103,16 @@ export const detector = pgTable('detector', {
   creatorId: text('creator_id')
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
+  projectId: text('project_id').references(() => project.id, {
+    onDelete: 'cascade'
+  }),
   name: varchar({ length: 255 }).notNull(),
   serialNumber: text('serial_number').notNull(),
   type: detectorType().notNull(),
+  status: detectorStatus().notNull().default('inactive'),
   model: varchar({ length: 255 }),
   brand: varchar({ length: 255 }),
+  lastData: timestamp().defaultNow(),
   password: text('password').notNull()
 });
 
