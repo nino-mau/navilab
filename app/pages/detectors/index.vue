@@ -113,19 +113,22 @@
       </div>
     </div>
 
-    <div class="card flex flex-row items-center gap-2 bg-white p-4">
-      <LucideTable :size="30" class="!text-highlighted" />
-      <h2 class="text-highlighted text-2xl font-bold">Detectors Registry</h2>
-    </div>
+    <div>
+      <!-- Detectors Table Title -->
+      <div class="card mb-5 flex flex-row items-center gap-2 bg-white p-4">
+        <LucideTable :size="30" class="!text-highlighted" />
+        <h2 class="text-highlighted text-2xl font-bold">Detectors Registry</h2>
+      </div>
 
-    <!-- Detectors Table -->
-    <div class="card h-fit w-full bg-white p-0">
-      <UTable
-        :data="detectorStore.detectors"
-        :columns="detectorsTableColumns"
-        :loading="detectorsTableLoading"
-        class="flex-1"
-      />
+      <!-- Detectors Table -->
+      <div class="card h-fit w-full bg-white p-0">
+        <UTable
+          :data="detectorStore.detectors"
+          :columns="detectorsTableColumns"
+          :loading="detectorsTableLoading"
+          class="flex-1"
+        />
+      </div>
     </div>
   </div>
 </template>
