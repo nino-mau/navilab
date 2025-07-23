@@ -171,6 +171,8 @@ import type { FormSubmitEvent } from '@nuxt/ui';
 import cn from 'cn-lib';
 import z from 'zod';
 
+const session = await authClient.getSession();
+
 const toast = useToast();
 
 // Form validation schema
@@ -220,10 +222,13 @@ const floatingLabelStyle = cn(
 async function onFormSubmit(
   event: FormSubmitEvent<z.output<typeof createDetectorSchema>>
 ) {
-  const res = await $fetch.raw('/api/detector', {
-    method: 'POST',
-    body: event.data
-  });
+  const res = await $fetch.raw(
+    `/api/users/${session.data?.user.id}/detectors`,
+    {
+      method: 'POST',
+      body: event.data
+    }
+  );
 
   if (!res.ok) {
     toast.add({
