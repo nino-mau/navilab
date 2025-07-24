@@ -192,3 +192,5 @@ export const specie = pgTable('specie', {
   latinName: varchar('latin_name', { length: 255 }).notNull(),
   acronym: varchar({ length: 255 }).notNull()
 });
+
+// seedDb();
