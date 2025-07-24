@@ -133,7 +133,8 @@ export const project = pgTable('project', {
   specieId: text('specie_id')
     .notNull()
     .references(() => specie.id, { onDelete: 'cascade' }),
-  area: geometry({ type: 'polygon', srid: 4326 }).notNull()
+  area: geometry({ type: 'polygon', srid: 4326 }),
+  locationLabel: text()
 });
 
 export const projectContributors = pgTable('project_contributors', {
@@ -196,5 +197,3 @@ export const specie = pgTable('specie', {
   latinName: varchar('latin_name', { length: 255 }).notNull(),
   acronym: varchar({ length: 255 }).notNull()
 });
-
-// seedDb();
