@@ -12,7 +12,7 @@ const dataValidationSchema = z.object({
     .regex(/^[a-zA-Z0-9_]+$/),
   serialNumber: z.string().min(1),
   type: z.enum(DETECTOR_TYPES),
-  password: z.string().min(8),
+  password: z.string().min(6),
   confirmPassword: z.string().min(1)
 });
 
