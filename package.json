@@ -14,7 +14,7 @@
   "dependencies": {
     "@nuxt/eslint": "1.5.2",
     "@nuxt/fonts": "0.11.4",
-    "@nuxt/ui": "3.2.0",
+    "@nuxt/ui": "3.3.0",
     "@nuxtjs/color-mode": "3.5.2",
     "@pinia/nuxt": "0.11.2",
     "bcrypt-ts": "^7.1.0",
@@ -23,6 +23,7 @@
     "dayjs": "^1.11.13",
     "dotenv": "^17.2.0",
     "drizzle-orm": "^0.44.2",
+    "drizzle-seed": "^0.3.1",
     "eslint": "^9.31.0",
     "nuxt": "^4.0.0",
     "nuxt-lucide-icons": "1.0.5",
