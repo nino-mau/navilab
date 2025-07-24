@@ -9,6 +9,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "db:push": "drizzle-kit push --config ./drizzle.config.ts",
+    "db:seed": "pnpx tsx ./server/db/seed.ts",
     "typecheck": "nuxt prepare && vue-tsc -b --noEmit"
   },
   "dependencies": {
