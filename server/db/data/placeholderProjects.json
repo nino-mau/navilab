@@ -1,0 +1,38 @@
+[
+  {
+    "id": "project-1",
+    "managerId": "HKh2J83AAu0Akz5K1USsAWvIsUmp0e7Z",
+    "name": "Bat Conservation",
+    "description": "Monitoring bat populations in the region.",
+    "startDate": "2024-01-01",
+    "endDate": "2024-12-31",
+    "private": false,
+    "specieId": "specie-1",
+    "area": null,
+    "locationLabel": "Forêt domaniale de Courbepine"
+  },
+  {
+    "id": "project-2",
+    "managerId": "HKh2J83AAu0Akz5K1USsAWvIsUmp0e7Z",
+    "name": "Forest Audio Survey",
+    "description": "Audio detectors for forest wildlife.",
+    "startDate": "2024-03-01",
+    "endDate": "2024-09-30",
+    "private": false,
+    "specieId": "specie-2",
+    "area": null,
+    "locationLabel": "Forêt communale de Chaulgnes"
+  },
+  {
+    "id": "project-3",
+    "managerId": "HKh2J83AAu0Akz5K1USsAWvIsUmp0e7Z",
+    "name": "Wetland Video Monitoring",
+    "description": "Video monitoring of wetland species.",
+    "startDate": "2024-05-01",
+    "endDate": "2024-11-30",
+    "private": false,
+    "specieId": "specie-3",
+    "area": null,
+    "locationLabel": "Forêt domaniale de Montrichard"
+  }
+]
