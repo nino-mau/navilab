@@ -1,8 +1,13 @@
 import { eq } from 'drizzle-orm';
 import db from '../db/client';
 import { user } from '../db/schema';
+import seed from '../db/seed';
 
 export default defineNitroPlugin(async () => {
+  /**
+   * Create admin user
+   */
+
   const existing = await db
     .select()
     .from(user)
@@ -17,4 +22,10 @@ export default defineNitroPlugin(async () => {
       }
     });
   }
+
+  /**
+   * Seed db
+   */
+
+  seed();
 });
