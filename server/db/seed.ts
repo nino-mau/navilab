@@ -12,6 +12,7 @@ export default async function seed() {
   await db.execute(`TRUNCATE TABLE "specie" RESTART IDENTITY CASCADE;`);
   await db.execute(`TRUNCATE TABLE "project" RESTART IDENTITY CASCADE;`);
 
+  await db.insert(schema.specie).values(speciesData);
 
   /**
    * Insert placeholder data

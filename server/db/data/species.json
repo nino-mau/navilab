@@ -1,0 +1,218 @@
+[
+  {
+    "id": "specie-1",
+    "name": "Grand rhinolophe",
+    "latinName": "Rhinolophus ferrumequinum",
+    "acronym": "Rferr"
+  },
+  {
+    "id": "specie-2",
+    "name": "Petit rhinolophe",
+    "latinName": "Rhinolophus hipposideros",
+    "acronym": "Rhipp"
+  },
+  {
+    "id": "specie-3",
+    "name": "Rhinolophe euryale",
+    "latinName": "Rhinolophus euryale",
+    "acronym": "Reury"
+  },
+  {
+    "id": "specie-4",
+    "name": "Rhinolophe de Méhely",
+    "latinName": "Rhinolophus mehelyi",
+    "acronym": "Rmehe"
+  },
+  {
+    "id": "specie-5",
+    "name": "Sérotine commune",
+    "latinName": "Eptesicus serotinus",
+    "acronym": "Esero"
+  },
+  {
+    "id": "specie-6",
+    "name": "Sérotine bicolore",
+    "latinName": "Vespertilio bicolore",
+    "acronym": "Vbico"
+  },
+  {
+    "id": "specie-7",
+    "name": "Sérotine de Nilsson",
+    "latinName": "Eptesicus nilssonii",
+    "acronym": "Enils"
+  },
+  {
+    "id": "specie-8",
+    "name": "Vespère de Savi",
+    "latinName": "Hypsugo savii",
+    "acronym": "Hsavi"
+  },
+  {
+    "id": "specie-9",
+    "name": "Murin des marais",
+    "latinName": "Myotis dasycneme",
+    "acronym": "Mdasy"
+  },
+  {
+    "id": "specie-10",
+    "name": "Murin de Daubenton",
+    "latinName": "Myotis daubentonii",
+    "acronym": "Mdaub"
+  },
+  {
+    "id": "specie-11",
+    "name": "Murin à oreilles échancrées",
+    "latinName": "Myotis emarginatus",
+    "acronym": "Memar"
+  },
+  {
+    "id": "specie-12",
+    "name": "Grand murin",
+    "latinName": "Myotis myotis",
+    "acronym": "Mmoyo"
+  },
+  {
+    "id": "specie-13",
+    "name": "Petit murin",
+    "latinName": "Myotis blythii",
+    "acronym": "Mblyt"
+  },
+  {
+    "id": "specie-14",
+    "name": "Murin de Capaccini",
+    "latinName": "Myotis capaccinii",
+    "acronym": "Mcapa"
+  },
+  {
+    "id": "specie-15",
+    "name": "Murin de Bechstein",
+    "latinName": "Myotis bechsteinii",
+    "acronym": "Mbech"
+  },
+  {
+    "id": "specie-16",
+    "name": "Murin d'Alcathoe",
+    "latinName": "Myotis alcathoe",
+    "acronym": "Malca"
+  },
+  {
+    "id": "specie-17",
+    "name": "Murin de Natterer",
+    "latinName": "Myotis nattereri",
+    "acronym": "Mnatt"
+  },
+  {
+    "id": "specie-18",
+    "name": "Murin de Brandt",
+    "latinName": "Myotis brandtii",
+    "acronym": "Mbran"
+  },
+  {
+    "id": "specie-19",
+    "name": "Murin du Maghreb",
+    "latinName": "Myotis punicus",
+    "acronym": "Mpuni"
+  },
+  {
+    "id": "specie-20",
+    "name": "Murin d'Escalera",
+    "latinName": "Myotis escalerai",
+    "acronym": "Mesca"
+  },
+  {
+    "id": "specie-21",
+    "name": "Murin à moustaches",
+    "latinName": "Myotis mystacinus",
+    "acronym": "Mmyst"
+  },
+  {
+    "id": "specie-22",
+    "name": "Noctule commune",
+    "latinName": "Nyctalus noctula",
+    "acronym": "Nnoct"
+  },
+  {
+    "id": "specie-23",
+    "name": "Grande noctule",
+    "latinName": "Nyctalus lasiopterus",
+    "acronym": "Nlasi"
+  },
+  {
+    "id": "specie-24",
+    "name": "Noctule de Leisler",
+    "latinName": "Nyctalus leisleri",
+    "acronym": "Nleis"
+  },
+  {
+    "id": "specie-25",
+    "name": "Pipistrelle commune",
+    "latinName": "Pipistrellus pipistrellus",
+    "acronym": "Ppipi"
+  },
+  {
+    "id": "specie-26",
+    "name": "Pipistrelle de Kuhl",
+    "latinName": "Pipistrellus kuhlii",
+    "acronym": "Pkuhl"
+  },
+  {
+    "id": "specie-27",
+    "name": "Pipistrelle de Nathusius",
+    "latinName": "Pipistrellus nathusii",
+    "acronym": "Pnath"
+  },
+  {
+    "id": "specie-28",
+    "name": "Pipistrelle pygmée",
+    "latinName": "Pipistrellus pygmaeus",
+    "acronym": "Ppygm"
+  },
+  {
+    "id": "specie-29",
+    "name": "Oreillard gris",
+    "latinName": "Plecotus austriacus",
+    "acronym": "Paust"
+  },
+  {
+    "id": "specie-30",
+    "name": "Oreillard roux",
+    "latinName": "Plecotus auritus",
+    "acronym": "Pauri"
+  },
+  {
+    "id": "specie-31",
+    "name": "Oreillard montagnard",
+    "latinName": "Plecotus macrobullaris",
+    "acronym": "Pmacr"
+  },
+  {
+    "id": "specie-32",
+    "name": "Barbastelle d'Europe",
+    "latinName": "Barbastella barbastellus",
+    "acronym": "Bbarb"
+  },
+  {
+    "id": "specie-33",
+    "name": "Murin cryptique",
+    "latinName": "Myotis crypticus",
+    "acronym": "Mcryp"
+  },
+  {
+    "id": "specie-34",
+    "name": "Murin nustrale",
+    "latinName": "Myotis nustrale (sp. Corse)",
+    "acronym": "Mnust"
+  },
+  {
+    "id": "specie-35",
+    "name": "Molosse de Cestoni",
+    "latinName": "Tadarida teniotis",
+    "acronym": "Tteni"
+  },
+  {
+    "id": "specie-36",
+    "name": "Minioptère de Schreibers",
+    "latinName": "Miniopterus schreibersii",
+    "acronym": "Mschr"
+  }
+]
