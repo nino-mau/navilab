@@ -1,12 +1,12 @@
 import {
+  boolean,
+  date,
+  geometry,
+  pgEnum,
   pgTable,
   text,
   timestamp,
-  geometry,
-  varchar,
-  date,
-  boolean,
-  pgEnum
+  varchar
 } from 'drizzle-orm/pg-core';
 
 export const detectorType = pgEnum('detector_type', [
@@ -41,7 +41,10 @@ export const user = pgTable('user', {
     .notNull(),
   role: userRole().default('Contributor').notNull(),
   phone: text(),
-  avatarUrl: text('avatar_url')
+  avatarUrl: text('avatar_url'),
+  banned: boolean('banned'),
+  banReason: text('ban_reason'),
+  banExpires: timestamp('ban_expires')
 });
 
 export const session = pgTable('session', {
@@ -54,7 +57,8 @@ export const session = pgTable('session', {
   userAgent: text('user_agent'),
   userId: text('user_id')
     .notNull()
-    .references(() => user.id, { onDelete: 'cascade' })
+    .references(() => user.id, { onDelete: 'cascade' }),
+  impersonatedBy: text('impersonated_by')
 });
 
 export const account = pgTable('account', {
