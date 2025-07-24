@@ -1,7 +1,7 @@
 import type { DetectorType } from '~~/shared/types/detector';
 import db from '../db/client';
 import { detector, project } from '../db/schema';
-import { eq } from 'drizzle-orm';
+import { eq, getTableColumns } from 'drizzle-orm';
 
 /**
  * Fetch all detectors of specified user
@@ -9,16 +9,8 @@ import { eq } from 'drizzle-orm';
 export async function fetchDetectorsById(userId: string) {
   const res = await db
     .select({
-      id: detector.id,
-      creatorId: detector.creatorId,
-      projectId: detector.projectId,
-      name: detector.name,
-      serialNumber: detector.serialNumber,
-      status: detector.status,
-      type: detector.type,
-      projectName: project.name,
-      lastData: detector.lastData,
-      password: detector.password
+      ...getTableColumns(detector),
+      projectName: project.name
     })
     .from(detector)
     .leftJoin(project, eq(detector.projectId, project.id))
