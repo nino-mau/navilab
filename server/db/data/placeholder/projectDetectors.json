@@ -1,0 +1,12 @@
+[
+  { "projectId": "project1", "detectorId": "detector1" },
+  { "projectId": "project1", "detectorId": "detector2" },
+  { "projectId": "project1", "detectorId": "detector3" },
+  { "projectId": "project2", "detectorId": "detector4" },
+  { "projectId": "project2", "detectorId": "detector5" },
+  { "projectId": "project2", "detectorId": "detector6" },
+  { "projectId": "project2", "detectorId": "detector7" },
+  { "projectId": "project3", "detectorId": "detector8" },
+  { "projectId": "project3", "detectorId": "detector9" },
+  { "projectId": "project3", "detectorId": "detector10" }
+]

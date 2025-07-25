@@ -1,0 +1,72 @@
+[
+  {
+    "id": "user1",
+    "name": "Rolando",
+    "email": "disconnected_evens@hotmail.co.uk",
+    "emailVerified": true,
+    "role": "Contributor"
+  },
+  {
+    "id": "user2",
+    "name": "Gerldine",
+    "email": "permanent_pairlee@hotmail.co.uk",
+    "emailVerified": true,
+    "role": "Contributor"
+  },
+  {
+    "id": "user3",
+    "name": "Uma",
+    "email": "nifty_kana@wanadoo.fr",
+    "emailVerified": true,
+    "role": "Contributor"
+  },
+  {
+    "id": "user4",
+    "name": "Chesley",
+    "email": "caustic_seferina@free.fr",
+    "emailVerified": true,
+    "role": "Contributor"
+  },
+  {
+    "id": "user5",
+    "name": "Rogerio",
+    "email": "certain_aaronjoshua@gmail.com",
+    "emailVerified": false,
+    "role": "Contributor"
+  },
+  {
+    "id": "user6",
+    "name": "Gianlucas",
+    "email": "creeping_tykeria@gmail.com",
+    "emailVerified": true,
+    "role": "Contributor"
+  },
+  {
+    "id": "user7",
+    "name": "Chizara",
+    "email": "congenial_rudine@outlook.com",
+    "emailVerified": true,
+    "role": "Contributor"
+  },
+  {
+    "id": "user8",
+    "name": "Kandise",
+    "email": "cold_shavona@wanadoo.fr",
+    "emailVerified": false,
+    "role": "Contributor"
+  },
+  {
+    "id": "user9",
+    "name": "Katera",
+    "email": "meteoric_demonta@ymail.com",
+    "emailVerified": true,
+    "role": "Contributor"
+  },
+  {
+    "id": "user10",
+    "name": "Sabra",
+    "email": "ceaseless_elek@yahoo.co.uk",
+    "emailVerified": true,
+    "role": "Contributor"
+  }
+]

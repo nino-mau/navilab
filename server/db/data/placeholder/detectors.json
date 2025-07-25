@@ -1,0 +1,112 @@
+[
+  {
+    "id": "detector1",
+    "creatorId": "user1",
+    "name": "Motion Sensor Alpha",
+    "serialNumber": "SN-user1-001",
+    "type": "Human",
+    "status": "inactive",
+    "model": "MS-100",
+    "brand": "SenseTech",
+    "password": "pass-detector1"
+  },
+  {
+    "id": "detector2",
+    "creatorId": "user2",
+    "name": "Audio Detector Beta",
+    "serialNumber": "SN-user2-002",
+    "type": "Audio",
+    "status": "online",
+    "model": "AD-200",
+    "brand": "SoundWave",
+    "password": "pass-detector2"
+  },
+  {
+    "id": "detector3",
+    "creatorId": "user3",
+    "name": "Video Camera Gamma",
+    "serialNumber": "SN-user3-003",
+    "type": "Video",
+    "status": "offline",
+    "model": "VC-300",
+    "brand": "VisionPro",
+    "password": "pass-detector3"
+  },
+  {
+    "id": "detector4",
+    "creatorId": "user4",
+    "name": "Thermal Sensor Delta",
+    "serialNumber": "SN-user4-004",
+    "type": "Human",
+    "status": "online",
+    "model": "TS-400",
+    "brand": "HeatGuard",
+    "password": "pass-detector4"
+  },
+  {
+    "id": "detector5",
+    "creatorId": "user5",
+    "name": "Motion Sensor Epsilon",
+    "serialNumber": "SN-user5-005",
+    "type": "Human",
+    "status": "inactive",
+    "model": "MS-500",
+    "brand": "SenseTech",
+    "password": "pass-detector5"
+  },
+  {
+    "id": "detector6",
+    "creatorId": "user6",
+    "name": "Audio Detector Zeta",
+    "serialNumber": "SN-user6-006",
+    "type": "Audio",
+    "status": "offline",
+    "model": "AD-600",
+    "brand": "SoundWave",
+    "password": "pass-detector6"
+  },
+  {
+    "id": "detector7",
+    "creatorId": "user7",
+    "name": "Video Camera Eta",
+    "serialNumber": "SN-user7-007",
+    "type": "Video",
+    "status": "online",
+    "model": "VC-700",
+    "brand": "VisionPro",
+    "password": "pass-detector7"
+  },
+  {
+    "id": "detector8",
+    "creatorId": "user8",
+    "name": "Thermal Sensor Theta",
+    "serialNumber": "SN-user8-008",
+    "type": "Human",
+    "status": "inactive",
+    "model": "TS-800",
+    "brand": "HeatGuard",
+    "password": "pass-detector8"
+  },
+  {
+    "id": "detector9",
+    "creatorId": "user9",
+    "name": "Motion Sensor Iota",
+    "serialNumber": "SN-user9-009",
+    "type": "Human",
+    "status": "online",
+    "model": "MS-900",
+    "brand": "SenseTech",
+    "password": "pass-detector9"
+  },
+  {
+    "id": "detector10",
+    "creatorId": "user10",
+    "name": "Audio Detector Kappa",
+    "serialNumber": "SN-user10-010",
+    "type": "Audio",
+    "status": "offline",
+    "model": "AD-1000",
+    "brand": "SoundWave",
+    "password": "pass-detector10"
+  }
+]

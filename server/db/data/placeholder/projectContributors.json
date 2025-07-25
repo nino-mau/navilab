@@ -1,0 +1,12 @@
+[
+  { "projectId": "project1", "contributorId": "user1" },
+  { "projectId": "project1", "contributorId": "user2" },
+  { "projectId": "project1", "contributorId": "user3" },
+  { "projectId": "project1", "contributorId": "user4" },
+  { "projectId": "project2", "contributorId": "user5" },
+  { "projectId": "project2", "contributorId": "user6" },
+  { "projectId": "project2", "contributorId": "user7" },
+  { "projectId": "project2", "contributorId": "user8" },
+  { "projectId": "project3", "contributorId": "user9" },
+  { "projectId": "project3", "contributorId": "user10" }
+]

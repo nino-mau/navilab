@@ -1,6 +1,6 @@
 [
   {
-    "id": "project-1",
+    "id": "project1",
     "managerId": "HKh2J83AAu0Akz5K1USsAWvIsUmp0e7Z",
     "name": "Bat Conservation",
     "description": "Monitoring bat populations in the region.",
@@ -12,7 +12,7 @@
     "locationLabel": "Forêt domaniale de Courbepine"
   },
   {
-    "id": "project-2",
+    "id": "project2",
     "managerId": "HKh2J83AAu0Akz5K1USsAWvIsUmp0e7Z",
     "name": "Forest Audio Survey",
     "description": "Audio detectors for forest wildlife.",
@@ -24,7 +24,7 @@
     "locationLabel": "Forêt communale de Chaulgnes"
   },
   {
-    "id": "project-3",
+    "id": "project3",
     "managerId": "HKh2J83AAu0Akz5K1USsAWvIsUmp0e7Z",
     "name": "Wetland Video Monitoring",
     "description": "Video monitoring of wetland species.",
