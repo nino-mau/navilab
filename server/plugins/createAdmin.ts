@@ -1,7 +1,6 @@
 import { eq } from 'drizzle-orm';
 import db from '../db/client';
 import { user } from '../db/schema';
-import seedPlaceholder from '../db/seed-placeholder';
 
 export default defineNitroPlugin(async () => {
   /**
@@ -21,11 +20,5 @@ export default defineNitroPlugin(async () => {
         role: 'Admin' as any // eslint-disable-line
       }
     });
-
-    /**
-     * Seed db with placeholder data
-     */
-
-    seedPlaceholder();
   }
 });

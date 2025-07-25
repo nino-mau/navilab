@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare",
     "db:push": "drizzle-kit push --config ./drizzle.config.ts",
     "db:seed": "pnpx tsx ./server/db/seed.ts",
+    "db:seed-placeholder": "pnpx tsx ./server/db/seed-placeholder.ts",
     "typecheck": "nuxt prepare && vue-tsc -b --noEmit"
   },
   "dependencies": {

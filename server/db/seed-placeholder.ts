@@ -1,12 +1,14 @@
 import { eq } from 'drizzle-orm';
-import db from './client';
+import 'dotenv/config';
 import projectsPlaceholderData from './data/placeholderProjects.json';
-import { user, project } from './schema';
+import { project, user } from './schema';
+import { drizzle } from 'drizzle-orm/node-postgres';
 
 /**
  * Insert placeholder data
  */
-export default async function seedPlaceholder() {
+async function main() {
+  const db = drizzle(process.env.DATABASE_URL!);
   await db.execute(`TRUNCATE TABLE "project" RESTART IDENTITY CASCADE;`);
 
   const adminId = await db
@@ -24,4 +26,6 @@ export default async function seedPlaceholder() {
   );
 
   console.log('✅ Seed Placeholder complete');
+  return;
 }
+main();
