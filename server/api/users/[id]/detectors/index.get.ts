@@ -24,6 +24,7 @@ export default defineEventHandler(async (event) => {
     ) as DetectorClient[];
   } catch (err) {
     const error = err as Error;
+    console.error('[@GET /api/users/[id]/detectors] \n', error);
     throw createError({
       statusCode: 500,
       statusMessage: error.message
