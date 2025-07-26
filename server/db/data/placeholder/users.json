@@ -68,5 +68,61 @@
     "email": "ceaseless_elek@yahoo.co.uk",
     "emailVerified": true,
     "role": "Contributor"
+  },
+  {
+    "id": "user13",
+    "name": "Amina",
+    "email": "amina.mohamed@example.com",
+    "emailVerified": true,
+    "role": "Contributor"
+  },
+  {
+    "id": "user14",
+    "name": "Mateo",
+    "email": "mateo.silva@example.com",
+    "emailVerified": true,
+    "role": "Contributor"
+  },
+  {
+    "id": "user15",
+    "name": "Lina",
+    "email": "lina.schmidt@example.com",
+    "emailVerified": true,
+    "role": "Contributor"
+  },
+  {
+    "id": "user16",
+    "name": "Noah",
+    "email": "noah.jones@example.com",
+    "emailVerified": false,
+    "role": "Contributor"
+  },
+  {
+    "id": "user17",
+    "name": "Sofia",
+    "email": "sofia.garcia@example.com",
+    "emailVerified": true,
+    "role": "Contributor"
+  },
+  {
+    "id": "user18",
+    "name": "Ethan",
+    "email": "ethan.lee@example.com",
+    "emailVerified": false,
+    "role": "Contributor"
+  },
+  {
+    "id": "user19",
+    "name": "Chloe",
+    "email": "chloe.kim@example.com",
+    "emailVerified": true,
+    "role": "Contributor"
+  },
+  {
+    "id": "user20",
+    "name": "Lucas",
+    "email": "lucas.martin@example.com",
+    "emailVerified": false,
+    "role": "Contributor"
   }
 ]

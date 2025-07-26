@@ -6,11 +6,13 @@ import usersData from './data/placeholder/users.json';
 import detectorsData from './data/placeholder/detectors.json';
 import projectContributorsData from './data/placeholder/projectContributors.json';
 import projectDetectorsData from './data/placeholder/projectDetectors.json';
+import projectRequestsData from './data/placeholder/projectRequests.json';
 import {
   detector,
   project,
   projectContributors,
   projectDetectors,
+  projectRequest,
   user
 } from './schema';
 
@@ -21,6 +23,7 @@ async function main() {
   const db = drizzle(process.env.DATABASE_URL!);
 
   // Clear previous data
+  await db.execute(`DELETE FROM "user" WHERE id ~ '^user([1-9]|1[0-9]|20)$';`);
   await db.execute(`TRUNCATE TABLE "project" RESTART IDENTITY CASCADE;`);
   await db.execute(`TRUNCATE TABLE "detector" RESTART IDENTITY CASCADE;`);
   await db.execute(
@@ -62,9 +65,10 @@ async function main() {
     }))
   );
 
-  // Insert data for project detectors and contributors
+  // Insert data for project detectors, contributors and requests
   await db.insert(projectContributors).values(projectContributorsData);
   await db.insert(projectDetectors).values(projectDetectorsData);
+  await db.insert(projectRequest).values(projectRequestsData);
 
   console.log('✅ Seed Placeholder complete');
   return;
