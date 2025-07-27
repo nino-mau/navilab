@@ -69,7 +69,8 @@ export function progressBetweenDates(
   const duration = end.diff(start);
   const elapsed = current.diff(start);
 
-  if (current > end || current < start) return 0;
+  if (current < start) return 0;
+  if (current > end) return 100;
 
   return elapsed / (duration / 100);
 }
