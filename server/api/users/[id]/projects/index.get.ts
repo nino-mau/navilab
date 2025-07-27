@@ -5,7 +5,6 @@ import type { ProjectClient, ProjectStatus } from '#shared/types/projects';
 /**
  * Take start/end date of project and return it's status
  */
-
 const getProjectStatus = (
   startDate: string,
   endDate: string
