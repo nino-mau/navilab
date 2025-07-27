@@ -8,12 +8,7 @@
           <!-- Project Tags -->
           <div class="mb-3.5 flex flex-row gap-3">
             <!-- Tag: Project Status -->
-            <UBadge
-              :label="capitalizeFirstLetter(props.project.status)"
-              size="md"
-              color="success"
-              variant="subtle"
-            />
+            <UiBadgeProjectStatus :status="props.project.status" />
             <!-- Tag: Total Contributors -->
             <UBadge
               :label="props.project.contributorsCount"
@@ -38,9 +33,12 @@
           </div>
 
           <!-- Project Name -->
-          <h1 class="text-highlighted text-2xl font-bold">
-            {{ props.project.name }}
-          </h1>
+          <div class="flex flex-row items-center gap-4 pl-1">
+            <UiChipProjectStatus :status="props.project.status" />
+            <h1 class="text-highlighted text-2xl font-bold">
+              {{ props.project.name }}
+            </h1>
+          </div>
 
           <!-- Project Description -->
           <p class="text-text2 mt-1.5 text-sm">
@@ -70,13 +68,13 @@
       <div class="mt-4 flex flex-row gap-10">
         <!-- Project Specie -->
         <div class="flex flex-row items-center gap-2">
-          <IconsBat />
+          <IconsBat color="var(--color-primary)" />
           <p class="text-text2">{{ props.project.specieName }}</p>
         </div>
 
         <!-- Project Location -->
         <div class="flex flex-row items-center gap-2">
-          <LucideMapPin :size="18" class="!text-text2" />
+          <LucideMapPin :size="18" class="!text-primary" />
           <p class="text-text2">{{ props.project.locationLabel }}</p>
         </div>
       </div>
@@ -105,8 +103,6 @@
 </template>
 
 <script setup lang="ts">
-import { capitalizeFirstLetter } from 'better-auth';
-
 const props = defineProps({
   project: {
     type: Object as PropType<ProjectClient>,
