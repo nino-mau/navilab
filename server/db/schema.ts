@@ -165,10 +165,11 @@ export const projectInvite = pgTable('project_invite', {
   projectId: text('project_id')
     .notNull()
     .references(() => project.id, { onDelete: 'cascade' }),
-  userId: text('user_id')
+  receiverId: text('user_id')
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
   status: requestStatus().default('pending').notNull(),
+  message: text().notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull()
 });
 
