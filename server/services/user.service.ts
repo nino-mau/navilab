@@ -12,6 +12,5 @@ export async function fetchUserById(userId: string) {
     })
     .from(user)
     .where(eq(user.id, userId));
-  console.log(res);
   return res;
 }
