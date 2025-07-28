@@ -2,42 +2,46 @@
   <div
     class="card hover-lift flex size-full cursor-pointer flex-col justify-between gap-4 hover:shadow-xl"
   >
-    <div class="flex flex-row items-start justify-between">
-      <!-- Request Heading -->
-      <div class="flex flex-row items-center gap-3">
-        <!-- User Avatar -->
-        <UAvatar size="xl" class="rounded-md" :src="avatarUrl" />
-        <div class="flex flex-col">
-          <!-- Username -->
-          <h1 class="text-highlighted text-lg font-semibold">
-            {{ capitalizeFirstLetter(request.requesterName) }}
-          </h1>
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-row items-start justify-between">
+        <!-- Request Heading -->
+        <div class="flex flex-row items-center gap-3">
+          <!-- User Avatar -->
+          <UAvatar size="xl" class="rounded-md" :src="avatarUrl" />
+          <div class="flex flex-col">
+            <!-- Username -->
+            <h1 class="text-highlighted text-lg font-semibold">
+              {{ capitalizeFirstLetter(request.requesterName) }}
+            </h1>
 
-          <!-- User Email -->
-          <p class="text-default text-sm">{{ request.requesterEmail }}</p>
+            <!-- User Email -->
+            <p class="text-default text-sm">{{ request.requesterEmail }}</p>
+          </div>
+        </div>
+
+        <div class="flex flex-row gap-3">
+          <!-- Request Project -->
+          <UBadge
+            icon="i-lucide-layers"
+            variant="subtle"
+            size="md"
+            :label="request.projectName"
+            class="w-fit"
+          />
+          <!-- Time Since Request -->
+          <UBadge
+            :label="timeSinceDate(props.request.createdAt)"
+            color="neutral"
+            variant="subtle"
+          />
         </div>
       </div>
-      <div class="flex flex-row gap-3">
-        <UBadge
-          icon="i-lucide-layers"
-          variant="subtle"
-          size="md"
-          :label="request.projectName"
-          class="w-fit"
-        />
-        <!-- Time Since Request -->
-        <UBadge
-          :label="timeSinceDate(props.request.createdAt)"
-          color="neutral"
-          variant="subtle"
-        />
-      </div>
-    </div>
 
-    <!-- Request Description -->
-    <p class="rounded-md bg-slate-200 p-3 text-sm text-slate-600 italic">
-      "{{ request.message }}"
-    </p>
+      <!-- Request Description -->
+      <p class="rounded-md bg-slate-200 p-3 text-sm text-slate-600 italic">
+        "{{ request.message }}"
+      </p>
+    </div>
 
     <div class="flex flex-row gap-4">
       <!-- Button: Accept Request -->
