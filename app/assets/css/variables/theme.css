@@ -15,7 +15,7 @@
   --color-primary-800: #13373a;
   --color-primary-900: #0e292c;
   --color-primary-950: #091b1d;
-  --color-primary: var(--color-primary-500);
+  --color-primary: #2f8991;
 
   --color-tertiary-50: #e9f0f0;
   --color-tertiary-100: #d3e1e1;
@@ -28,7 +28,7 @@
   --color-tertiary-800: #0e2b2a;
   --color-tertiary-900: #071515;
   --color-tertiary-950: #071515;
-  --color-tertiary: var(--color-tertiary-500);
+  --color-tertiary: #226b69;
 
   --color-secondary-50: #eaeef4;
   --color-secondary-100: #d5dee9;
