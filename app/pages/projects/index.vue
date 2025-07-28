@@ -47,43 +47,59 @@
     >
       <!-- Tab: Projects -->
       <template #projects>
-        <div
+        <TransitionGroup
+          name="slide-left"
+          tag="ul"
           class="grid-rows-[minmax(260px, 280px)_minmax(260px, 280px)] grid grid-cols-2 gap-6 pt-6"
+          appear
         >
-          <div
-            v-for="project in projectsStore.projects"
+          <li
+            v-for="(project, index) in projectsStore.projects"
             :key="project.id"
             class="col-span-1 row-span-1"
+            :style="{ transitionDelay: `${Math.floor(index / 2) * 150}ms` }"
           >
             <UiCardProject :project="project" />
-          </div>
-        </div>
+          </li>
+        </TransitionGroup>
       </template>
 
       <!-- Tab: Requests -->
       <template #requests>
-        <div class="grid grid-cols-2 gap-6 pt-6">
-          <div
-            v-for="request in requestsStore.requests"
+        <TransitionGroup
+          name="slide-left"
+          tag="ul"
+          class="grid grid-cols-2 gap-6 pt-6"
+          appear
+        >
+          <li
+            v-for="(request, index) in requestsStore.requests"
             :key="request.id"
-            class="col-span-1 h-fit"
+            class="col-span-1"
+            :style="{ transitionDelay: `${Math.floor(index / 2) * 150}ms` }"
           >
             <UiCardRequest :request="request" />
-          </div>
-        </div>
+          </li>
+        </TransitionGroup>
       </template>
 
       <!-- Tab: Invites -->
       <template #pendingInvites>
-        <div class="flex flex-col gap-6 pt-6">
-          <div
-            v-for="invite in invitesStore.invites"
+        <TransitionGroup
+          name="list"
+          tag="ul"
+          class="flex flex-col gap-6 pt-6"
+          appear
+        >
+          <li
+            v-for="(invite, index) in invitesStore.invites"
             :key="invite.id"
             class="h-fit w-full"
+            :style="{ transitionDelay: `${index * 100}ms` }"
           >
             <UiCardInvite :invite="invite" />
-          </div>
-        </div>
+          </li>
+        </TransitionGroup>
       </template>
     </UTabs>
   </div>
@@ -97,6 +113,15 @@ const session = await authClient.getSession();
 const projectsStore = useProjectsStore();
 const requestsStore = useRequestsStore();
 const invitesStore = useInvitesStore();
+
+const activeTab = ref(2);
+
+watch(
+  () => activeTab.value,
+  (newValue) => {
+    console.log(newValue);
+  }
+);
 
 const tabs = computed(() => [
   {
