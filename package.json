@@ -14,6 +14,10 @@
     "typecheck": "nuxt prepare && vue-tsc -b --noEmit"
   },
   "dependencies": {
+    "@internationalized/date": "^3.8.2",
+    "@maskito/core": "^3.10.2",
+    "@maskito/kit": "^3.10.2",
+    "@maskito/vue": "^3.10.2",
     "@nuxt/eslint": "1.5.2",
     "@nuxt/fonts": "0.11.4",
     "@nuxt/ui": "3.3.0",
