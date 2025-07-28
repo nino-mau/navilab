@@ -46,14 +46,6 @@
           </p>
         </div>
         <div class="flex flex-row gap-3">
-          <!-- Button: Delete Project -->
-          <UButton
-            size="lg"
-            class="size-fit"
-            icon="i-lucide-trash-2"
-            variant="soft"
-            color="error"
-          />
           <!-- Button: Edit Project -->
           <UButton
             size="lg"
@@ -61,6 +53,14 @@
             icon="i-lucide-square-pen"
             variant="subtle"
             color="neutral"
+          />
+          <!-- Button: Delete Project -->
+          <UButton
+            size="lg"
+            class="size-fit"
+            icon="i-lucide-trash-2"
+            variant="soft"
+            color="error"
           />
         </div>
       </div>
