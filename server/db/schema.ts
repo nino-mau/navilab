@@ -142,7 +142,7 @@ export const project = pgTable('project', {
   locationLabel: text()
 });
 
-export const projectContributors = pgTable('project_contributors', {
+export const projectContributor = pgTable('project_contributor', {
   projectId: text('project_id')
     .notNull()
     .references(() => project.id, { onDelete: 'cascade' }),
@@ -151,7 +151,7 @@ export const projectContributors = pgTable('project_contributors', {
     .references(() => user.id, { onDelete: 'cascade' })
 });
 
-export const projectDetectors = pgTable('project_detectors', {
+export const projectDetector = pgTable('project_detector', {
   detectorId: text('detector_id')
     .notNull()
     .references(() => detector.id, { onDelete: 'cascade' }),
