@@ -45,7 +45,8 @@
       :items="tabs"
       class="w-full"
     >
-      <template #profiles="{ item }">
+      <!-- Tab: Projects -->
+      <template #projects>
         <div
           class="grid-rows-[minmax(260px, 280px)_minmax(260px, 280px)] grid grid-cols-2 gap-6 pt-6"
         >
@@ -55,6 +56,19 @@
             class="col-span-1 row-span-1"
           >
             <UiCardProject :project="project" />
+          </div>
+        </div>
+      </template>
+
+      <!-- Tab: Requests -->
+      <template #requests>
+        <div class="grid grid-cols-2 gap-6 pt-6">
+          <div
+            v-for="request in requestsStore.requests"
+            :key="request.id"
+            class="col-span-1 h-fit"
+          >
+            <UiCardRequest :request="request" />
           </div>
         </div>
       </template>
@@ -68,16 +82,17 @@ import type { TabsItem } from '@nuxt/ui';
 const session = await authClient.getSession();
 
 const projectsStore = useProjectsStore();
+const requestsStore = useRequestsStore();
 
-const tabs = [
+const tabs = computed(() => [
   {
-    label: 'Profiles',
-    badge: 3,
-    slot: 'profiles' as const
+    label: 'Projects',
+    badge: projectsStore.projects.length,
+    slot: 'projects' as const
   },
   {
     label: 'Requests',
-    badge: 3,
+    badge: requestsStore.requests.length,
     slot: 'requests' as const
   },
   {
@@ -85,11 +100,11 @@ const tabs = [
     badge: 3,
     slot: 'pendingInvites' as const
   }
-] satisfies TabsItem[];
+]) satisfies ComputedRef<TabsItem[]>;
 
 onMounted(async () => {
-  // Update projects state
+  // Update used store state
   await projectsStore.fetch(session.data!.user.id);
-  console.log(projectsStore.projects);
+  await requestsStore.fetch(session.data!.user.id);
 });
 </script>
