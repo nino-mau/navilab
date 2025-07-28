@@ -24,7 +24,7 @@ export const userRole = pgEnum('user_role', [
   'Contributor',
   'Admin'
 ]);
-export const projectRequestStatus = pgEnum('project_request_status', [
+export const requestStatus = pgEnum('project_request_status', [
   'accepted',
   'refused',
   'pending'
@@ -161,13 +161,15 @@ export const projectDetectors = pgTable('project_detectors', {
 });
 
 export const projectInvite = pgTable('project_invite', {
+  id: text('id').primaryKey(),
   projectId: text('project_id')
     .notNull()
     .references(() => project.id, { onDelete: 'cascade' }),
   userId: text('user_id')
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
-  id: text('id').primaryKey()
+  status: requestStatus().default('pending').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull()
 });
 
 export const projectMessage = pgTable('project_message', {
@@ -193,7 +195,7 @@ export const projectRequest = pgTable('project_request', {
   requesterId: text('requester_id')
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
-  status: projectRequestStatus().default('pending').notNull(),
+  status: requestStatus().default('pending').notNull(),
   message: text().notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull()
 });
