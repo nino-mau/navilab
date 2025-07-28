@@ -4,14 +4,16 @@ import { drizzle } from 'drizzle-orm/node-postgres';
 import projectsData from './data/placeholder/projects.json';
 import usersData from './data/placeholder/users.json';
 import detectorsData from './data/placeholder/detectors.json';
-import projectContributorsData from './data/placeholder/projectContributors.json';
-import projectDetectorsData from './data/placeholder/projectDetectors.json';
-import projectRequestsData from './data/placeholder/projectRequests.json';
+import projectContributorData from './data/placeholder/projectContributors.json';
+import projectDetectorData from './data/placeholder/projectDetectors.json';
+import projectRequestData from './data/placeholder/projectRequests.json';
+import projectInviteData from './data/placeholder/projectInvites.json';
 import {
   detector,
   project,
-  projectContributors,
-  projectDetectors,
+  projectContributor,
+  projectDetector,
+  projectInvite,
   projectRequest,
   user
 } from './schema';
@@ -27,11 +29,15 @@ async function main() {
   await db.execute(`TRUNCATE TABLE "project" RESTART IDENTITY CASCADE;`);
   await db.execute(`TRUNCATE TABLE "detector" RESTART IDENTITY CASCADE;`);
   await db.execute(
-    `TRUNCATE TABLE "project_detectors" RESTART IDENTITY CASCADE;`
+    `TRUNCATE TABLE "project_detector" RESTART IDENTITY CASCADE;`
   );
   await db.execute(
-    `TRUNCATE TABLE "project_contributors" RESTART IDENTITY CASCADE;`
+    `TRUNCATE TABLE "project_contributor" RESTART IDENTITY CASCADE;`
   );
+  await db.execute(
+    `TRUNCATE TABLE "project_request" RESTART IDENTITY CASCADE;`
+  );
+  await db.execute(`TRUNCATE TABLE "project_invite" RESTART IDENTITY CASCADE;`);
 
   // Insert placeholder users
   await db.insert(user).values(
@@ -65,10 +71,11 @@ async function main() {
     }))
   );
 
-  // Insert data for project detectors, contributors and requests
-  await db.insert(projectContributors).values(projectContributorsData);
-  await db.insert(projectDetectors).values(projectDetectorsData);
-  await db.insert(projectRequest).values(projectRequestsData);
+  // Insert data for project detectors, contributors, requests and invites
+  await db.insert(projectContributor).values(projectContributorData);
+  await db.insert(projectDetector).values(projectDetectorData);
+  await db.insert(projectRequest).values(projectRequestData);
+  await db.insert(projectInvite).values(projectInviteData);
 
   console.log('✅ Seed Placeholder complete');
   return;

@@ -70,6 +70,20 @@
     "role": "Contributor"
   },
   {
+    "id": "user11",
+    "name": "Isabella",
+    "email": "isabella.rossi@example.com",
+    "emailVerified": true,
+    "role": "Contributor"
+  },
+  {
+    "id": "user12",
+    "name": "Mohamed",
+    "email": "mohamed.ali@example.com",
+    "emailVerified": false,
+    "role": "Contributor"
+  },
+  {
     "id": "user13",
     "name": "Amina",
     "email": "amina.mohamed@example.com",
