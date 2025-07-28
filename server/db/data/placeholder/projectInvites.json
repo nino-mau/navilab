@@ -2,24 +2,28 @@
   {
     "projectId": "project1",
     "receiverId": "user11",
+    "status": "accepted",
     "message": "Hi, we'd like to invite you to join the Bat Conservation project. Your expertise would be a valuable addition to our team.",
     "id": "invite1"
   },
   {
     "projectId": "project2",
     "receiverId": "user12",
+    "status": "refused",
     "message": "Hello, we are inviting you to participate in the Forest Audio Survey project. We believe your background aligns well with our goals.",
     "id": "invite2"
   },
   {
     "projectId": "project1",
     "receiverId": "user13",
+    "status": "pending",
     "message": "Greetings! We would like to invite you to join the Bat Conservation project. Your skills in data collection and outreach would be greatly appreciated.",
     "id": "invite4"
   },
   {
     "projectId": "project2",
     "receiverId": "user14",
+    "status": "pending",
     "message": "We'd like to invite you to contribute to the Forest Audio Survey project. Your experience in ecology would be a great asset to our research.",
     "id": "invite5"
   }
