@@ -72,6 +72,19 @@
           </div>
         </div>
       </template>
+
+      <!-- Tab: Invites -->
+      <template #pendingInvites>
+        <div class="flex flex-col gap-6 pt-6">
+          <div
+            v-for="invite in invitesStore.invites"
+            :key="invite.id"
+            class="h-fit w-full"
+          >
+            <UiCardInvite :invite="invite" />
+          </div>
+        </div>
+      </template>
     </UTabs>
   </div>
 </template>
@@ -83,6 +96,7 @@ const session = await authClient.getSession();
 
 const projectsStore = useProjectsStore();
 const requestsStore = useRequestsStore();
+const invitesStore = useInvitesStore();
 
 const tabs = computed(() => [
   {
@@ -97,7 +111,7 @@ const tabs = computed(() => [
   },
   {
     label: 'Pending Invites',
-    badge: 3,
+    badge: invitesStore.invites.length,
     slot: 'pendingInvites' as const
   }
 ]) satisfies ComputedRef<TabsItem[]>;
@@ -106,5 +120,6 @@ onMounted(async () => {
   // Update used store state
   await projectsStore.fetch(session.data!.user.id);
   await requestsStore.fetch(session.data!.user.id);
+  await invitesStore.fetch(session.data!.user.id);
 });
 </script>
