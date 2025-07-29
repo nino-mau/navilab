@@ -41,12 +41,25 @@
     <UTabs
       size="xl"
       color="primary"
-      :ui="{ content: 'w-full', list: 'w-[35%] mr-auto' }"
+      :ui="{ content: 'size-full', list: 'w-[35%] mr-auto' }"
       :items="tabs"
-      class="w-full"
+      class="size-full"
     >
       <!-- Tab: Projects -->
       <template #projects>
+        <!-- Empty State -->
+        <div
+          v-if="!requestsStore.requests.length"
+          class="flex size-full items-center justify-center pb-12"
+        >
+          <UiEmptyState
+            label="No Projects"
+            desc="You currently do not have any project, create one to start using our features"
+            :icon="LucideLayers"
+          />
+        </div>
+
+        <!-- Projects List -->
         <TransitionGroup
           name="slide-left"
           tag="ul"
@@ -66,7 +79,21 @@
 
       <!-- Tab: Requests -->
       <template #requests>
+        <!-- Empty State -->
+        <div
+          v-if="!requestsStore.requests.length"
+          class="flex size-full items-center justify-center pb-12"
+        >
+          <UiEmptyState
+            label="No Pending Requests"
+            desc="Lorem ipsum dolor sit amet, consectetur adipisicing."
+            :icon="LucideMails"
+          />
+        </div>
+
+        <!-- Requests List -->
         <TransitionGroup
+          v-else
           name="slide-left"
           tag="ul"
           class="grid grid-cols-2 gap-6 pt-6"
@@ -85,6 +112,19 @@
 
       <!-- Tab: Invites -->
       <template #pendingInvites>
+        <!-- Empty State -->
+        <div
+          v-if="!requestsStore.requests.length"
+          class="flex size-full items-center justify-center pb-12"
+        >
+          <UiEmptyState
+            label="No Pending Invites"
+            desc="Lorem ipsum dolor sit amet, consectetur adipisicing."
+            :icon="LucideMailPlus"
+          />
+        </div>
+
+        <!-- Invites List -->
         <TransitionGroup
           name="list"
           tag="ul"
@@ -106,6 +146,7 @@
 </template>
 
 <script setup lang="ts">
+import { LucideLayers, LucideMailPlus, LucideMails } from '#components';
 import type { TabsItem } from '@nuxt/ui';
 
 const session = await authClient.getSession();
