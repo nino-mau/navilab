@@ -41,7 +41,7 @@
           </div>
 
           <!-- Project Description -->
-          <p class="text-text2 mt-1.5 text-sm">
+          <p class="text-default mt-1.5 text-sm">
             {{ props.project.description }}
           </p>
         </div>
@@ -61,6 +61,9 @@
             icon="i-lucide-trash-2"
             variant="soft"
             color="error"
+            @click="
+              deleteProjectWrapper(props.project.id, session.data!.user.id)
+            "
           />
         </div>
       </div>
@@ -69,19 +72,19 @@
         <!-- Project Specie -->
         <div class="flex flex-row items-center gap-2">
           <IconsBat color="var(--color-primary)" />
-          <p class="text-text2">{{ props.project.specieName }}</p>
+          <p class="text-default italic">{{ props.project.specieName }}</p>
         </div>
 
         <!-- Project Location -->
         <div class="flex flex-row items-center gap-2">
           <LucideMapPin :size="18" class="!text-primary" />
-          <p class="text-text2">{{ props.project.locationLabel }}</p>
+          <p class="text-default">{{ props.project.locationLabel }}</p>
         </div>
       </div>
     </div>
 
     <div
-      class="flex flex-row items-center justify-between gap-3 border-t-1 border-t-slate-300 pt-3"
+      class="flex min-h-[37px] flex-row items-center justify-between gap-3 border-t-1 border-t-slate-300 pt-3"
     >
       <!-- Project Progress Indicator -->
       <UProgress
@@ -103,10 +106,24 @@
 </template>
 
 <script setup lang="ts">
+const session = await authClient.getSession();
+
+const projectsStore = useProjectsStore();
+const requestsStore = useRequestsStore();
+const invitesStore = useInvitesStore();
+
 const props = defineProps({
   project: {
     type: Object as PropType<ProjectClient>,
     required: true
   }
 });
+
+const deleteProjectWrapper = async (projectId: string, userId: string) => {
+  await projectsStore.delete(projectId, userId);
+
+  // Remove associated requests and invites from state
+  requestsStore.removeByProjectId(projectId);
+  invitesStore.removeByProjectId(projectId);
+};
 </script>
