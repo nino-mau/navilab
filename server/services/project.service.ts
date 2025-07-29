@@ -32,6 +32,18 @@ export async function fetchProjectsById(userId: string) {
     .groupBy(project.id, specie.name);
   return res;
 }
+
+/**
+ * Delete a project by it's id
+ */
+export async function deleteProjectById(projectId: string) {
+  const res = await db
+    .delete(project)
+    .where(eq(project.id, projectId))
+    .returning({ deletedProjectId: project.id });
+  return res;
+}
+
 /**
  * Create a project
  */
