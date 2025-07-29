@@ -36,7 +36,7 @@
           <div class="flex flex-row items-center gap-4 pl-1">
             <UiChipProjectStatus :status="props.project.status" />
             <h1 class="text-highlighted text-2xl font-bold">
-              {{ props.project.name }}
+              {{ capitalizeFirstChar(props.project.name) }}
             </h1>
           </div>
 

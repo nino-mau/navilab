@@ -11,7 +11,7 @@
           <div class="flex flex-col">
             <!-- Username -->
             <h1 class="text-highlighted text-lg font-semibold">
-              {{ capitalizeFirstLetter(request.requesterName) }}
+              {{ capitalizeFirstChar(request.requesterName) }}
             </h1>
 
             <!-- User Email -->
@@ -65,8 +65,6 @@
 </template>
 
 <script setup lang="ts">
-import { capitalizeFirstLetter } from 'better-auth';
-
 const props = defineProps({
   request: {
     type: Object as PropType<RequestClient>,

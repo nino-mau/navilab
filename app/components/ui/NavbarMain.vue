@@ -67,7 +67,9 @@ const session = await authClient.getSession();
 
 const rc = useRuntimeConfig();
 
-const username = ref<string>(upperFirst(session.data?.user?.name || ''));
+const username = ref<string>(
+  capitalizeFirstChar(session.data?.user?.name || '')
+);
 
 const avatarUrl =
   rc.public.avatarPlaceholderUrl + `&seed=${session.data?.user?.name}`;
