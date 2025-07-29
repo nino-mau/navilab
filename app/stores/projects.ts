@@ -15,24 +15,24 @@ export const useProjectsStore = defineStore('projectsStore', {
       }
 
       this.projects = res._data ?? [];
-    }
+    },
 
-    // async delete(detectorId: string, userId: string) {
-    //   const res = await $fetch.raw(
-    //     `/api/users/${userId}/detectors/${detectorId}`,
-    //     {
-    //       method: 'DELETE'
-    //     }
-    //   );
-    //
-    //   if (!res.ok) {
-    //     return;
-    //   }
-    //
-    //   // Remove the deleted detector from the state
-    //   this.detectors = this.detectors.filter(
-    //     (detector) => detector.id !== detectorId
-    //   );
-    // }
+    async delete(projectId: string, userId: string) {
+      const res = await $fetch.raw(
+        `/api/users/${userId}/projects/${projectId}`,
+        {
+          method: 'DELETE'
+        }
+      );
+
+      if (!res.ok) {
+        return;
+      }
+
+      // Remove the deleted detector from the state
+      this.projects = this.projects.filter(
+        (project) => project.id !== projectId
+      );
+    }
   }
 });
