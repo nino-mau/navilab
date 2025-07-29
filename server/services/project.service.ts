@@ -32,3 +32,33 @@ export async function fetchProjectsById(userId: string) {
     .groupBy(project.id, specie.name);
   return res;
 }
+/**
+ * Create a project
+ */
+export async function createProject(
+  id: string,
+  managerId: string,
+  name: string,
+  description: string,
+  locationLabel: string,
+  specieId: string,
+  isPrivate: boolean,
+  startDate: string,
+  endDate: string
+) {
+  const res = await db
+    .insert(project)
+    .values({
+      id: id,
+      managerId: managerId,
+      name: name,
+      description: description,
+      locationLabel: locationLabel,
+      specieId: specieId,
+      private: isPrivate,
+      startDate: startDate,
+      endDate: endDate
+    })
+    .returning({ insertId: project.id });
+  return res;
+}
