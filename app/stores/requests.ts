@@ -13,7 +13,7 @@ export const useRequestsStore = defineStore('requestsStore', {
       }
 
       this.requests = res._data ?? [];
-    }
+    },
 
     // async delete(detectorId: string, userId: string) {
     //   const res = await $fetch.raw(
@@ -32,5 +32,14 @@ export const useRequestsStore = defineStore('requestsStore', {
     //     (detector) => detector.id !== detectorId
     //   );
     // }
+
+    /**
+     * Remove a project requests from state
+     */
+    removeByProjectId(projectId: string) {
+      this.requests = this.requests.filter(
+        (request) => request.projectId !== projectId
+      );
+    }
   }
 });

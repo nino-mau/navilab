@@ -13,7 +13,7 @@ export const useInvitesStore = defineStore('invitesStore', {
       }
 
       this.invites = res._data ?? [];
-    }
+    },
 
     // async delete(detectorId: string, userId: string) {
     //   const res = await $fetch.raw(
@@ -32,5 +32,14 @@ export const useInvitesStore = defineStore('invitesStore', {
     //     (detector) => detector.id !== detectorId
     //   );
     // }
+
+    /**
+     * Remove a project invites from state
+     */
+    removeByProjectId(projectId: string) {
+      this.invites = this.invites.filter(
+        (invite) => invite.projectId !== projectId
+      );
+    }
   }
 });
