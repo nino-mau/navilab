@@ -86,7 +86,7 @@
         >
           <UiEmptyState
             label="No Pending Requests"
-            desc="Lorem ipsum dolor sit amet, consectetur adipisicing."
+            desc="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis, suscipit quis deleniti !"
             :icon="LucideMails"
           />
         </div>
@@ -119,7 +119,7 @@
         >
           <UiEmptyState
             label="No Pending Invites"
-            desc="Lorem ipsum dolor sit amet, consectetur adipisicing."
+            desc="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis, suscipit quis deleniti !"
             :icon="LucideMailPlus"
           />
         </div>
