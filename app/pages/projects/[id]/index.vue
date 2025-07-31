@@ -80,6 +80,10 @@
       <template #overview>
         <ProjectTabOverview />
       </template>
+
+      <template #detectors>
+        <ProjectTabDetectors />
+      </template>
     </UTabs>
   </div>
 </template>
@@ -102,12 +106,12 @@ const projectTabs = computed(() => [
   },
   {
     label: 'Detectors',
-    badge: 1,
+    badge: 0,
     slot: 'detectors' as const
   },
   {
     label: 'Contributors',
-    badge: 1,
+    badge: 0,
     slot: 'contributors' as const
   }
 ]) satisfies ComputedRef<TabsItem[]>;
