@@ -41,7 +41,7 @@
     <UTabs
       size="xl"
       color="primary"
-      :ui="{ content: 'size-full', list: 'w-[35%] mr-auto' }"
+      :ui="{ content: 'size-full', list: 'w-fit mr-auto', trigger: 'px-7' }"
       :items="tabs"
       class="size-full"
     >
