@@ -1,13 +1,60 @@
-import { countDistinct, eq, getTableColumns } from 'drizzle-orm';
+import { and, countDistinct, eq, getTableColumns, sql } from 'drizzle-orm';
+import { alias } from 'drizzle-orm/pg-core';
 import db from '../db/client';
 import {
+  detector,
   project,
   projectContributor,
   projectDetector,
   projectInvite,
   projectRequest,
-  specie
+  specie,
+  user
 } from '../db/schema';
+import { getISOFormatDateQuery } from '../utils/db';
+
+/**
+ * Fetch a project of specified user
+ */
+export async function fetchProjectById(projectId: string, userId: string) {
+  const requesterUser = alias(user, 'requester_user');
+
+  const res = await db
+    .select({
+      ...getTableColumns(project),
+      startDate: getISOFormatDateQuery(project.startDate),
+      endDate: getISOFormatDateQuery(project.endDate),
+      specieName: specie.name,
+      contributors:
+        sql`json_agg(DISTINCT jsonb_build_object('id', ${user.id}, 'name', ${user.name}, 'email', ${user.email}))`.as(
+          'contributors'
+        ),
+      detectors:
+        sql`json_agg(DISTINCT jsonb_build_object('id', ${detector.id}, 'name', ${detector.name}, 'serialNumber', ${detector.serialNumber}, 'type', ${detector.type}, 'status', ${detector.status}, 'model', ${detector.model}, 'brand', ${detector.brand}, 'lastData', ${getISOFormatDateQuery(detector.lastData)}, 'creatorId', ${detector.creatorId}))`.as(
+          'detectors'
+        ),
+      requests:
+        sql`json_agg(DISTINCT jsonb_build_object('id', ${projectRequest.id}, 'projectId', ${projectRequest.projectId}, 'requesterId', ${projectRequest.requesterId}, 'status', ${projectRequest.status}, 'message', ${projectRequest.message}, 'createdAt', ${getISOFormatDateQuery(projectRequest.createdAt)}, 'requesterName', ${requesterUser.name}, 'requesterEmail', ${requesterUser.email}))`.as(
+          'requests'
+        ),
+      invites:
+        sql`json_agg(DISTINCT jsonb_build_object('id', ${projectInvite.id}, 'projectId', ${projectInvite.projectId}, 'status', ${projectInvite.status}, 'message', ${projectInvite.message}, 'receiverId', ${projectInvite.receiverId}, 'createdAt', ${getISOFormatDateQuery(projectInvite.createdAt)}))`.as(
+          'invites'
+        )
+    })
+    .from(project)
+    .leftJoin(projectContributor, eq(project.id, projectContributor.projectId))
+    .leftJoin(projectDetector, eq(project.id, projectDetector.projectId))
+    .leftJoin(projectRequest, eq(project.id, projectRequest.projectId))
+    .leftJoin(requesterUser, eq(projectRequest.requesterId, requesterUser.id))
+    .leftJoin(projectInvite, eq(project.id, projectInvite.projectId))
+    .innerJoin(specie, eq(project.specieId, specie.id))
+    .innerJoin(user, eq(projectContributor.contributorId, user.id))
+    .innerJoin(detector, eq(projectDetector.detectorId, detector.id))
+    .where(and(eq(project.managerId, userId), eq(project.id, projectId)))
+    .groupBy(project.id, specie.name);
+  return res;
+}
 
 /**
  * Fetch all projects of specified user
@@ -16,6 +63,8 @@ export async function fetchProjectsById(userId: string) {
   const res = await db
     .select({
       ...getTableColumns(project),
+      startDate: getISOFormatDateQuery(project.startDate),
+      endDate: getISOFormatDateQuery(project.endDate),
       contributorsCount: countDistinct(projectContributor.contributorId),
       detectorsCount: countDistinct(projectDetector.detectorId),
       invitesCount: countDistinct(projectInvite.id),
