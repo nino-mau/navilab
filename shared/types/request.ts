@@ -4,7 +4,7 @@ import type { projectRequest } from '../../server/db/schema';
 export type Request = InferSelectModel<typeof projectRequest>;
 export type RequestInsert = InferInsertModel<typeof projectRequest>;
 
-export type RequestStatus = 'not started' | 'in progress' | 'finished';
+export type RequestStatus = 'accepted' | 'refused' | 'pending';
 
 /**
  * Request object that is sent to the client.
