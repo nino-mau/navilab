@@ -5,6 +5,15 @@ export const useProjectStore = defineStore('projectStore', {
     project: undefined as ProjectDetailsClient | undefined
   }),
 
+  getters: {
+    detectorsCount(): number {
+      return this.project?.detectors.length || 0;
+    },
+    contributorsCount(): number {
+      return this.project?.contributors.length || 0;
+    }
+  },
+
   actions: {
     /**
      *
