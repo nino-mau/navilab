@@ -18,6 +18,7 @@ import { getISOFormatDateQuery } from '../utils/db';
  */
 export async function fetchProjectById(projectId: string, userId: string) {
   const requesterUser = alias(user, 'requester_user');
+  const detectorUser = alias(user, 'detector_user');
 
   const res = await db
     .select({
@@ -30,7 +31,7 @@ export async function fetchProjectById(projectId: string, userId: string) {
           'contributors'
         ),
       detectors:
-        sql`json_agg(DISTINCT jsonb_build_object('id', ${detector.id}, 'name', ${detector.name}, 'serialNumber', ${detector.serialNumber}, 'type', ${detector.type}, 'status', ${detector.status}, 'model', ${detector.model}, 'brand', ${detector.brand}, 'lastData', ${getISOFormatDateQuery(detector.lastData)}, 'creatorId', ${detector.creatorId}))`.as(
+        sql`json_agg(DISTINCT jsonb_build_object('id', ${detector.id}, 'name', ${detector.name}, 'serialNumber', ${detector.serialNumber}, 'type', ${detector.type}, 'status', ${detector.status}, 'model', ${detector.model}, 'brand', ${detector.brand}, 'lastData', ${getISOFormatDateQuery(detector.lastData)}, 'creatorId', ${detector.creatorId}, 'creatorEmail', ${detectorUser.email}))`.as(
           'detectors'
         ),
       requests:
@@ -51,6 +52,7 @@ export async function fetchProjectById(projectId: string, userId: string) {
     .innerJoin(specie, eq(project.specieId, specie.id))
     .innerJoin(user, eq(projectContributor.contributorId, user.id))
     .innerJoin(detector, eq(projectDetector.detectorId, detector.id))
+    .leftJoin(detectorUser, eq(detector.creatorId, detectorUser.id))
     .where(and(eq(project.managerId, userId), eq(project.id, projectId)))
     .groupBy(project.id, specie.name);
   return res;

@@ -9,6 +9,7 @@ export type DetectorInsert = InferInsertModel<typeof detector>;
  */
 export type DetectorClient = Omit<Detector, 'password' | 'lastData'> & {
   projectName?: string;
+  creatorEmail?: string;
   lastData: string;
 };
 
