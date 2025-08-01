@@ -84,6 +84,10 @@
       <template #detectors>
         <ProjectTabDetectors />
       </template>
+
+      <template #contributors>
+        <ProjectTabContributors />
+      </template>
     </UTabs>
   </div>
 </template>
