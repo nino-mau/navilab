@@ -16,17 +16,22 @@
       <div class="flex flex-col gap-4">
         <!-- Project Name -->
         <div class="flex flex-row items-center gap-5">
-          <h1 class="text-highlighted text-4xl font-bold">Project Name</h1>
-          <UiBadgeProjectStatus :status="'not started'" />
+          <h1 class="text-highlighted text-4xl font-bold">
+            {{ capitalizeFirstChar(projectStore.project?.name || '') }}
+          </h1>
+          <UiBadgeProjectStatus
+            v-if="projectStore.project"
+            size="lg"
+            :status="projectStore.project?.status"
+          />
         </div>
 
         <!-- Project Description -->
-        <p class="text-default">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-          neque asperiores obcaecati quia. Ipsam, cum?
+        <p class="text-default rounded-sm bg-slate-200 p-3">
+          {{ projectStore.project?.description }}
         </p>
       </div>
-      <div class="flex flex-row gap-25">
+      <div class="flex flex-row gap-12">
         <!-- Project Specie -->
         <div class="flex flex-row items-center gap-2">
           <div
@@ -34,7 +39,7 @@
           >
             <LucideBird :size="15" />
           </div>
-          <p class="text-default">Specie</p>
+          <p class="text-default">{{ projectStore.project?.specieName }}</p>
         </div>
 
         <!-- Project Location Label -->
@@ -44,7 +49,9 @@
           >
             <LucideMapPin :size="15" />
           </div>
-          <p class="text-default">Location Label</p>
+          <p class="text-default">
+            {{ projectStore.project?.locationLabel }}
+          </p>
         </div>
 
         <!-- Project Detectors Count -->
@@ -54,7 +61,10 @@
           >
             <LucideRadar :size="15" />
           </div>
-          <p class="text-default">5 Detectors</p>
+          <p class="text-default">
+            {{ projectStore.detectorsCount }}
+            {{ projectStore.detectorsCount === 1 ? 'Detector' : 'Detectors' }}
+          </p>
         </div>
 
         <!-- Project Contributors Count -->
@@ -64,7 +74,14 @@
           >
             <LucideUsers :size="15" />
           </div>
-          <p class="text-default">5 Contributors</p>
+          <p class="text-default">
+            {{ projectStore.contributorsCount }}
+            {{
+              projectStore.contributorsCount === 1
+                ? 'Contributor'
+                : 'Contributors'
+            }}
+          </p>
         </div>
       </div>
     </div>
@@ -130,7 +147,7 @@ const projectTabs = computed(() => [
 
 onMounted(async () => {
   if (!projectId || typeof projectId !== 'string') {
-    navigateTo('/404');
+    return navigateTo('/404');
   }
   await projectStore.fetch(projectId, session.data!.user.id);
 });
