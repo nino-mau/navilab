@@ -49,7 +49,7 @@
         <div class="card flex flex-col">
           <div class="mb-6 flex flex-row items-center gap-3">
             <LucideActivity class="!text-primary" />
-            <h1 class="text-highlighted text-2xl font-bold">System Status</h1>
+            <h2 class="text-highlighted text-2xl font-bold">System Status</h2>
           </div>
           <div class="flex flex-col gap-3">
             <!-- Active Contributors -->
@@ -88,7 +88,7 @@
         <div class="card flex flex-col">
           <div class="mb-6 flex flex-row items-center gap-3">
             <LucideFolderKanban class="!text-primary" />
-            <h1 class="text-highlighted text-2xl font-bold">Project Details</h1>
+            <h2 class="text-highlighted text-2xl font-bold">Project Details</h2>
           </div>
           <div class="flex flex-col gap-3">
             <!-- Project Manager -->
