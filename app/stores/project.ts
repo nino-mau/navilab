@@ -22,9 +22,7 @@ export const useProjectStore = defineStore('projectStore', {
 
   actions: {
     /**
-     *
-     *   : Data Fetching
-     *
+     *   : Data Fetching
      */
 
     async fetch(projectId: string, userId: string) {
@@ -43,9 +41,7 @@ export const useProjectStore = defineStore('projectStore', {
     },
 
     /**
-     *
      *   : Data Processing
-     *
      */
 
     /**
