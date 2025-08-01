@@ -11,6 +11,12 @@ export const useProjectStore = defineStore('projectStore', {
     },
     contributorsCount(): number {
       return this.project?.contributors.length || 0;
+    },
+    requestsCount(): number {
+      return this.project?.requests.length || 0;
+    },
+    invitesCount(): number {
+      return this.project?.invites.length || 0;
     }
   },
 
