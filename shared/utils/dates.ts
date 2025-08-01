@@ -3,6 +3,13 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/en';
 
 /**
+ * Convert Date object to string
+ */
+export function dateToString(date: Date | string) {
+  return dayjs(date).format();
+}
+
+/**
  * Calculate the time since a given date, return non verbose result
  */
 export function timeSinceDate(date: string): string {
