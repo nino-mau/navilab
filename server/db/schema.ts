@@ -39,6 +39,7 @@ export const user = pgTable('user', {
     .notNull(),
   image: text('image'),
   createdAt: timestamp('created_at')
+    .defaultNow()
     .$defaultFn(() => /* @__PURE__ */ new Date())
     .notNull(),
   updatedAt: timestamp('updated_at')
@@ -121,7 +122,7 @@ export const detector = pgTable('detector', {
   status: detectorStatus().notNull().default('inactive'),
   model: varchar({ length: 255 }),
   brand: varchar({ length: 255 }),
-  lastData: timestamp().defaultNow(),
+  lastData: timestamp().defaultNow().notNull(),
   password: text('password').notNull()
 });
 
