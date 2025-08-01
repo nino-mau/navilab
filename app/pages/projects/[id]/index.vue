@@ -99,7 +99,10 @@
       </template>
 
       <template #detectors>
-        <ProjectTabDetectors />
+        <ProjectTabDetectors
+          v-if="projectStore.project"
+          :detectors="projectStore.project?.detectors"
+        />
       </template>
 
       <template #contributors>
