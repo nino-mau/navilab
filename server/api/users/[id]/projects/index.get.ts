@@ -1,18 +1,6 @@
+import type { ProjectClient } from '#shared/types/projects';
 import { fetchProjectsById } from '~~/server/services/project.service';
-import dayjs from 'dayjs';
-import type { ProjectClient, ProjectStatus } from '#shared/types/projects';
-
-/**
- * Take start/end date of project and return it's status
- */
-const getProjectStatus = (
-  startDate: string,
-  endDate: string
-): ProjectStatus => {
-  if (dayjs() < dayjs(startDate)) return 'not started';
-  if (dayjs() > dayjs(endDate)) return 'finished';
-  return 'in progress';
-};
+import { getProjectStatus } from '~~/server/utils/project';
 
 /**
  * Return projects of a user
