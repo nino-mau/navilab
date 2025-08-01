@@ -125,6 +125,9 @@ const projectTabs = computed(() => [
 ]) satisfies ComputedRef<TabsItem[]>;
 
 onMounted(async () => {
+  if (!projectId || typeof projectId !== 'string') {
+    navigateTo('/404');
+  }
   await projectStore.fetch(projectId, session.data!.user.id);
 });
 </script>
