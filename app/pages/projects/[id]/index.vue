@@ -47,7 +47,7 @@
           <div
             class="bg-primary flex items-center justify-center rounded-sm p-1"
           >
-            <LucideMapPin :size="15" />
+            <LucideMap :size="15" />
           </div>
           <p class="text-default">
             {{ projectStore.project?.locationLabel }}
