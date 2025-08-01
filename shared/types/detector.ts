@@ -7,11 +7,10 @@ export type DetectorInsert = InferInsertModel<typeof detector>;
 /**
  * Detector object that is sent to the client.
  */
-export type DetectorClient = Omit<Detector, 'password'> &
-  Omit<Detector, 'lastDate'> & {
-    projectName?: string;
-    lastData: string;
-  };
+export type DetectorClient = Omit<Detector, 'password' | 'lastData'> & {
+  projectName?: string;
+  lastData: string;
+};
 
 export type DetectorType = 'Human' | 'Audio' | 'Video';
 
