@@ -167,17 +167,26 @@ watch(
 const tabs = computed(() => [
   {
     label: 'Projects',
-    badge: projectsStore.projects.length,
+    badge:
+      projectsStore.projects.length > 0
+        ? projectsStore.projects.length
+        : undefined,
     slot: 'projects' as const
   },
   {
     label: 'Requests',
-    badge: requestsStore.requests.length,
+    badge:
+      requestsStore.requests.length > 0
+        ? requestsStore.requests.length
+        : undefined,
+
     slot: 'requests' as const
   },
   {
     label: 'Pending Invites',
-    badge: invitesStore.invites.length,
+    badge:
+      invitesStore.invites.length > 0 ? invitesStore.invites.length : undefined,
+
     slot: 'pendingInvites' as const
   }
 ]) satisfies ComputedRef<TabsItem[]>;

@@ -135,12 +135,14 @@ const projectTabs = computed(() => [
   },
   {
     label: 'Detectors',
-    badge: 0,
+    badge:
+      projectStore.detectorsCount > 0 ? projectStore.detectorsCount : undefined,
     slot: 'detectors' as const
   },
   {
-    badge: 0,
     label: 'Team',
+    badge:
+      projectStore.requestsCount > 0 ? projectStore.requestsCount : undefined,
     slot: 'contributors' as const
   }
 ]) satisfies ComputedRef<TabsItem[]>;
