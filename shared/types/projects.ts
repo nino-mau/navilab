@@ -1,5 +1,8 @@
 import type { InferInsertModel, InferSelectModel } from 'drizzle-orm';
 import type { project } from '../../server/db/schema';
+import type { DetectorClient } from './detector';
+import type { Invite } from './invite';
+import type { RequestClient } from './request';
 
 export type Project = InferSelectModel<typeof project>;
 export type ProjectInsert = InferInsertModel<typeof project>;
@@ -7,7 +10,7 @@ export type ProjectInsert = InferInsertModel<typeof project>;
 export type ProjectStatus = 'not started' | 'in progress' | 'finished';
 
 /**
- * Project object that is sent to the client.
+ * Project object without details that is sent to the client.
  */
 export type ProjectClient = Project & {
   contributorsCount: number;
@@ -16,4 +19,22 @@ export type ProjectClient = Project & {
   requestsCount: number;
   status: ProjectStatus;
   specieName: string;
+};
+
+/**
+ * Project object with details that is sent to the client.
+ */
+export type ProjectDetailsClient = Omit<Project, 'startDate' | 'endDate'> & {
+  startDate: string;
+  endDate: string;
+  status: ProjectStatus;
+  specieName: string;
+  contributors: {
+    id: string;
+    name: string;
+    email: string;
+  }[];
+  detectors: DetectorClient[];
+  requests: RequestClient[];
+  invites: (Omit<Invite, 'createdAt'> & { createdAt: string })[];
 };
