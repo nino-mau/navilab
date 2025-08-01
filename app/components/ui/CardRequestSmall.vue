@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card hover-lift flex size-full cursor-pointer flex-col justify-between gap-4 !border-0 !bg-white !p-4 hover:shadow-xl"
+    class="card hover-lift flex size-full cursor-pointer flex-col justify-between gap-4 bg-white !p-4 shadow-none hover:shadow-xl"
   >
     <div class="flex flex-col gap-4">
       <div class="flex flex-row items-center justify-between">
@@ -23,12 +23,12 @@
           <!-- Button: Accept Request -->
           <UButton
             size="lg"
-            variant="soft"
+            variant="subtle"
             color="success"
             icon="i-lucide-check"
           />
           <!-- Button: Refuse Request -->
-          <UButton size="lg" variant="soft" color="error" icon="i-lucide-x" />
+          <UButton size="lg" variant="subtle" color="error" icon="i-lucide-x" />
         </div>
       </div>
 
