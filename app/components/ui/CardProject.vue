@@ -40,10 +40,9 @@
             </h1>
           </div>
 
-          <!-- Project Description -->
-          <p class="text-default mt-1.5 text-sm">
-            {{ props.project.description }}
-          </p>
+          <!-- <p class="text-default mt-1.5 text-sm"> -->
+          <!--   {{ props.project.description }} -->
+          <!-- </p> -->
         </div>
         <div class="flex flex-row gap-3">
           <!-- Button: Edit Project -->
@@ -71,14 +70,22 @@
       <div class="mt-4 flex flex-row gap-10">
         <!-- Project Specie -->
         <div class="flex flex-row items-center gap-2">
-          <IconsBat color="var(--color-primary)" />
+          <div
+            class="bg-primary flex items-center justify-center rounded-sm p-1"
+          >
+            <LucideBird :size="15" />
+          </div>
           <p class="text-default italic">{{ props.project.specieName }}</p>
         </div>
 
         <!-- Project Location -->
         <div class="flex flex-row items-center gap-2">
-          <LucideMapPin :size="18" class="!text-primary" />
-          <p class="text-default">{{ props.project.locationLabel }}</p>
+          <div
+            class="bg-primary flex items-center justify-center rounded-sm p-1"
+          >
+            <LucideMap :size="15" />
+          </div>
+          <p class="text-default italic">{{ props.project.locationLabel }}</p>
         </div>
       </div>
     </div>
