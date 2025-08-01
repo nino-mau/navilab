@@ -86,7 +86,11 @@
       </template>
 
       <template #contributors>
-        <ProjectTabContributors />
+        <ProjectTabContributors
+          v-if="projectStore.project"
+          :contributors="projectStore.project.contributors"
+          :requests="projectStore.project.requests"
+        />
       </template>
     </UTabs>
   </div>

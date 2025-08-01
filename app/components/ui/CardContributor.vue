@@ -3,7 +3,7 @@
     class="card hover-lift flex h-fit cursor-pointer flex-col gap-4 !p-4 hover:shadow-xl"
   >
     <div class="flex flex-row items-center justify-between">
-      <div class="flex flex-row gap-4">
+      <div class="flex w-full flex-row gap-4">
         <UAvatar
           :chip="{
             color: 'success',
@@ -15,11 +15,21 @@
           size="3xl"
           class="rounded-sm"
         />
-        <div class="flex flex-col">
-          <h2 class="text-highlighted text-xl font-bold">Username</h2>
-          <p class="text-default">user@gmail.com</p>
+
+        <div class="flex w-full flex-col">
+          <!-- Contributor Name -->
+          <h2 class="text-highlighted text-xl.n.name font-bold">
+            {{ capitalizeFirstChar(props.contributor.name) }}
+          </h2>
+
+          <!-- Contributor Email -->
+          <p class="text-default max-w-[95%] truncate">
+            {{ props.contributor.email }}
+          </p>
         </div>
       </div>
+
+      <!-- Button: Revoke Access -->
       <UButton
         size="lg"
         class="size-fit"
@@ -31,14 +41,12 @@
     <div
       class="flex flex-row justify-between border-t-1 border-t-slate-300 pt-3.5"
     >
-      <!-- <div class="flex flex-row items-center gap-1"> -->
-      <!--   <LucideRadar :size="18" class="!text-primary" /> -->
-      <!--   <p class="text-default text-sm">12 Detectors</p> -->
-      <!-- </div> -->
-      <!-- <UBadge label="active" color="success" variant="subtle" /> -->
-      <UBadge label="124 Contributions" color="neutral" variant="subtle" />
+      <!-- Contributor Total Contributions -->
+      <UBadge label="0 Contributions" color="neutral" variant="subtle" />
+
+      <!-- Contributor Total Detectors -->
       <UBadge
-        label="12  Detectors"
+        :label="`${detectorsCount} ${detectorsCount === 1 ? 'Detector' : 'Detectors'}`"
         icon="i-lucide-radar"
         color="primary"
         variant="solid"
@@ -48,7 +56,19 @@
 </template>
 
 <script setup lang="ts">
+interface Props {
+  contributor: ProjectDetailsClient['contributors'][0];
+}
+const props = defineProps<Props>();
+
 const rc = useRuntimeConfig();
 
-const avatarUrl = rc.public.avatarPlaceholderUrl + `&seed=sdfsdfsdf`;
+const projectStore = useProjectStore();
+
+const detectorsCount = projectStore.getContributorDetectorsCount(
+  props.contributor.id
+);
+
+const avatarUrl =
+  rc.public.avatarPlaceholderUrl + `&seed=${props.contributor.name}`;
 </script>

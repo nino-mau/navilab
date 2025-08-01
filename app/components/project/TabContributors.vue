@@ -3,18 +3,18 @@
     <!-- Contributors List -->
     <ul class="col-span-1 grid h-fit grid-cols-2 gap-6">
       <li
-        v-for="(n, index) in 4"
-        :key="index"
+        v-for="(contributor, index) in contributors"
+        :key="contributor.id"
         class="col-span-1 h-fit"
         :style="{ transitionDelay: `${Math.floor(index / 2) * 150}ms` }"
       >
-        <UiCardContributor />
+        <UiCardContributor :contributor="contributor" />
       </li>
     </ul>
 
     <!-- Card: Project Join Requests -->
     <div class="card col-span-1 flex h-fit flex-col">
-      <div class="mb-6 flex flex-row items-center gap-3">
+      <div class="flex flex-row items-center gap-3">
         <div
           class="bg-primary flex size-fit items-center justify-center rounded-sm p-1.5"
         >
@@ -24,9 +24,9 @@
       </div>
 
       <!-- Requests List -->
-      <ul class="flex flex-col gap-4">
+      <ul class="flex max-h-full flex-col gap-4 pt-6">
         <li
-          v-for="(request, index) in requestsStore.requests"
+          v-for="(request, index) in props.requests"
           :key="request.id"
           :style="{ transitionDelay: `${Math.floor(index / 2) * 150}ms` }"
         >
@@ -38,6 +38,12 @@
 </template>
 
 <script setup lang="ts">
+interface Props {
+  contributors: ProjectDetailsClient['contributors'];
+  requests: ProjectDetailsClient['requests'];
+}
+const props = defineProps<Props>();
+
 const session = await authClient.getSession();
 const requestsStore = useRequestsStore();
 
