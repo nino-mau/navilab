@@ -96,8 +96,12 @@
 import type { TabsItem } from '@nuxt/ui';
 import { useRoute } from 'vue-router';
 
+const session = await authClient.getSession();
+
 const route = useRoute();
-const projectId = route.params.id; // or route.params.projectId if you named it [projectId].vue
+const projectId = route.params.id as string;
+
+const projectStore = useProjectStore();
 
 const projectTabs = computed(() => [
   {
@@ -119,4 +123,8 @@ const projectTabs = computed(() => [
     slot: 'contributors' as const
   }
 ]) satisfies ComputedRef<TabsItem[]>;
+
+onMounted(async () => {
+  await projectStore.fetch(projectId, session.data!.user.id);
+});
 </script>
