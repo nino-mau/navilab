@@ -10,6 +10,7 @@ export async function fetchDetectorsById(userId: string) {
   const res = await db
     .select({
       ...getTableColumns(detector),
+      lastData: getISOFormatDateQuery(detector.lastData),
       projectName: project.name
     })
     .from(detector)
