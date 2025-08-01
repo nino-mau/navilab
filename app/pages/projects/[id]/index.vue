@@ -139,8 +139,8 @@ const projectTabs = computed(() => [
     slot: 'detectors' as const
   },
   {
-    label: 'Contributors',
     badge: 0,
+    label: 'Team',
     slot: 'contributors' as const
   }
 ]) satisfies ComputedRef<TabsItem[]>;
