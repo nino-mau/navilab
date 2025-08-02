@@ -26,9 +26,13 @@ export type ProjectClient = Project & {
 /**
  * Project object with details that is sent to the client.
  */
-export type ProjectDetailsClient = Omit<Project, 'startDate' | 'endDate'> & {
+export type ProjectDetailsClient = Omit<
+  Project,
+  'startDate' | 'endDate' | 'lastUpdate'
+> & {
   startDate: string;
   endDate: string;
+  lastUpdate: string;
   status: ProjectStatus;
   specieName: string;
   contributors: {

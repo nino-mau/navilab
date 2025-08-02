@@ -140,7 +140,8 @@ export const project = pgTable('project', {
     .notNull()
     .references(() => specie.id, { onDelete: 'cascade' }),
   area: geometry({ type: 'polygon', srid: 4326 }),
-  locationLabel: text()
+  locationLabel: text(),
+  lastUpdate: timestamp().defaultNow().notNull()
 });
 
 export const projectContributor = pgTable('project_contributor', {
