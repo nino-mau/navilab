@@ -116,7 +116,14 @@
       class="size-full"
     >
       <template #overview>
-        <ProjectTabOverview />
+        <ProjectTabOverview
+          v-if="projectStore.project"
+          :project="projectStore.project"
+          :detectors-count="projectStore.detectorsCount"
+          :contributors-count="projectStore.contributorsCount"
+          :active-detectors-count="projectStore.activeDetectorsCount"
+          :active-contributors-count="projectStore.activeContributorsCount"
+        />
       </template>
 
       <template #detectors>

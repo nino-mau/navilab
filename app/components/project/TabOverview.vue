@@ -21,24 +21,36 @@
         <p class="text-success mt-1 text-xs font-medium">+7%</p>
       </div>
 
-      <!-- Card: Project Completion -->
-      <div
-        class="card col-span-1 flex h-fit flex-col items-center justify-center"
-      >
-        <LucideChartBar :size="32" class="!text-primary" />
-        <h2 class="text-highlighted mt-3 text-2xl font-bold">94%</h2>
-        <p class="text-default text-sm">Project Completion</p>
-        <p class="text-success mt-1 text-xs font-medium">+12%</p>
-      </div>
-
       <!-- Card: Active Detectors -->
       <div
         class="card col-span-1 flex h-fit flex-col items-center justify-center"
       >
         <LucideRadar :size="32" class="!text-primary" />
-        <h2 class="text-highlighted mt-3 text-2xl font-bold">5</h2>
+        <h2 class="text-highlighted mt-3 text-2xl font-bold">
+          {{ props.activeDetectorsCount }}
+        </h2>
         <p class="text-default text-sm">Active Detectors</p>
-        <p class="text-success mt-1 text-xs font-medium">Full</p>
+        <p class="text-success mt-1 text-xs font-medium">
+          {{ props.detectorsCount - props.activeDetectorsCount }} inactive
+        </p>
+      </div>
+
+      <!-- Card: Project Completion -->
+      <div
+        class="card col-span-1 flex h-fit flex-col items-center justify-center py-[34px]"
+      >
+        <LucideChartNoAxesCombined :size="32" class="!text-primary" />
+        <h2 class="text-highlighted mt-3 text-2xl font-bold">
+          {{
+            Math.round(
+              progressBetweenDates(
+                props.project.startDate,
+                props.project.endDate
+              )
+            )
+          }}%
+        </h2>
+        <p class="text-default text-sm">Project Completion</p>
       </div>
     </div>
 
@@ -52,22 +64,30 @@
             <h2 class="text-highlighted text-2xl font-bold">System Status</h2>
           </div>
           <div class="flex flex-col gap-3">
-            <!-- Active Contributors -->
+            <!-- Active Contributors Count -->
             <div class="flex flex-row justify-between">
               <p class="text-default">Active Contributors</p>
               <div class="flex flex-row items-center gap-2">
-                <p class="text-success font-semibold">6/12</p>
+                <p class="text-success font-semibold">
+                  {{ props.activeContributorsCount }}/{{
+                    props.contributorsCount
+                  }}
+                </p>
                 <UProgress :model-value="50" class="w-25" color="success" />
               </div>
             </div>
+
             <!-- Active Detectors -->
             <div class="flex flex-row justify-between">
               <p class="text-default">Active Detectors</p>
               <div class="flex flex-row items-center gap-2">
-                <p class="text-success font-semibold">9/10</p>
+                <p class="text-success font-semibold">
+                  {{ props.activeDetectorsCount }}/{{ props.detectorsCount }}
+                </p>
                 <UProgress :model-value="90" class="w-25" color="success" />
               </div>
             </div>
+
             <!-- Zone Coverage -->
             <div class="flex flex-row justify-between">
               <p class="text-default">Zone Coverage</p>
@@ -76,10 +96,13 @@
                 <UProgress :model-value="0" class="w-25" />
               </div>
             </div>
+
             <!-- Project Last Update -->
             <div class="flex flex-row justify-between">
               <p class="text-default">Last Update</p>
-              <p class="text-highlighted font-semibold">10 hours ago</p>
+              <p class="text-highlighted font-semibold">
+                {{ timeSinceDate(props.project.lastUpdate) }}
+              </p>
             </div>
           </div>
         </div>
@@ -95,7 +118,7 @@
             <div class="flex flex-row justify-between">
               <p class="text-default">Manager</p>
               <UBadge
-                label="User@user.com"
+                :label="props.project.managerEmail"
                 color="neutral"
                 class="font-semibold"
                 variant="subtle"
@@ -104,17 +127,21 @@
             <!-- Project Status -->
             <div class="flex flex-row justify-between">
               <p class="text-default">Project Status</p>
-              <UiBadgeProjectStatus :status="'not started'" />
+              <UiBadgeProjectStatus :status="props.project.status" />
             </div>
             <!-- Project Remaining Time -->
             <div class="flex flex-row justify-between">
               <p class="text-default">Remaining Time</p>
-              <p class="text-highlighted font-semibold">10 days</p>
+              <p class="text-highlighted font-semibold">
+                {{ timeRemaining(props.project.endDate) }}
+              </p>
             </div>
             <!-- Project Created Date -->
             <div class="flex flex-row justify-between">
               <p class="text-default">Created</p>
-              <p class="text-highlighted font-semibold">10 March 2025</p>
+              <p class="text-highlighted font-semibold">
+                {{ formattedStartDate }}
+              </p>
             </div>
           </div>
         </div>
@@ -123,4 +150,23 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import dayjs from 'dayjs';
+
+interface Props {
+  project: ProjectDetailsClient;
+  detectorsCount: number;
+  contributorsCount: number;
+  activeDetectorsCount: number;
+  activeContributorsCount: number;
+}
+
+const props = defineProps<Props>();
+
+const formattedStartDate = computed(() => {
+  const startDate = dayjs(props.project.startDate);
+  return startDate.format('dddd, MMMM D YYYY');
+});
+/* FIX: When void date.value is removed the startDate composable trigger an error when used in template */
+void formattedStartDate.value;
+</script>
