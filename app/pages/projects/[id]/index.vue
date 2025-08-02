@@ -14,16 +14,37 @@
     <!-- Project Heading Card -->
     <div class="card flex h-fit flex-col gap-6">
       <div class="flex flex-col gap-4">
-        <!-- Project Name -->
-        <div class="flex flex-row items-center gap-5">
-          <h1 class="text-highlighted text-4xl font-bold">
-            {{ capitalizeFirstChar(projectStore.project?.name || '') }}
-          </h1>
-          <UiBadgeProjectStatus
-            v-if="projectStore.project"
-            size="lg"
-            :status="projectStore.project?.status"
-          />
+        <div class="flex flex-row justify-between">
+          <div class="flex flex-row items-center gap-5">
+            <!-- Project Name -->
+            <h1 class="text-highlighted text-4xl font-bold">
+              {{ capitalizeFirstChar(projectStore.project?.name || '') }}
+            </h1>
+            <!-- Project Status -->
+            <UiBadgeProjectStatus
+              v-if="projectStore.project"
+              size="lg"
+              :status="projectStore.project?.status"
+            />
+          </div>
+          <div class="flex flex-row gap-3">
+            <!-- Button: Delete Project -->
+            <UButton
+              size="lg"
+              class="size-fit"
+              color="neutral"
+              variant="subtle"
+              icon="i-lucide-trash"
+            />
+            <!-- Button: Open Project Menu -->
+            <UButton
+              size="lg"
+              class="size-fit"
+              color="neutral"
+              variant="subtle"
+              icon="i-lucide-ellipsis"
+            />
+          </div>
         </div>
 
         <!-- Project Description -->
