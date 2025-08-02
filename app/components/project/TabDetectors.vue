@@ -5,7 +5,7 @@
     class="mt-4 grid grid-cols-2 gap-6"
     appear
   >
-    <div
+    <li
       v-for="(detector, index) in props.detectors"
       :key="detector.id"
       class="hover-lift card flex h-fit flex-col !p-4 !pl-5 hover:shadow-xl"
@@ -53,7 +53,7 @@
           />
         </div>
       </div>
-    </div>
+    </li>
   </TransitionGroup>
 </template>
 
