@@ -6,6 +6,9 @@ export const useProjectStore = defineStore('projectStore', {
   }),
 
   getters: {
+    /**
+     *   : Counts
+     */
     detectorsCount(): number {
       return this.project?.detectors.length || 0;
     },
@@ -18,10 +21,18 @@ export const useProjectStore = defineStore('projectStore', {
     invitesCount(): number {
       return this.project?.invites.length || 0;
     },
+
     activeDetectorsCount(): number {
       return (
         this.project?.detectors.filter(
           (detector) => detector.status !== 'inactive'
+        ).length || 0
+      );
+    },
+    activeContributorsCount(): number {
+      return (
+        this.project?.contributors.filter(
+          (contributor) => contributor.status !== 'inactive'
         ).length || 0
       );
     }
