@@ -30,6 +30,7 @@ export type ProjectDetailsClient = Omit<
   Project,
   'startDate' | 'endDate' | 'lastUpdate'
 > & {
+  managerEmail: string;
   startDate: string;
   endDate: string;
   lastUpdate: string;

@@ -19,10 +19,12 @@ import { getISOFormatDateQuery } from '../utils/db';
 export async function fetchProjectById(projectId: string, userId: string) {
   const requesterUser = alias(user, 'requester_user');
   const detectorUser = alias(user, 'detector_user');
+  const managerUser = alias(user, 'manager_user');
 
   const res = await db
     .select({
       ...getTableColumns(project),
+      managerEmail: managerUser.email,
       startDate: getISOFormatDateQuery(project.startDate),
       endDate: getISOFormatDateQuery(project.endDate),
       specieName: specie.name,
@@ -54,8 +56,9 @@ export async function fetchProjectById(projectId: string, userId: string) {
     .innerJoin(user, eq(projectContributor.contributorId, user.id))
     .innerJoin(detector, eq(projectDetector.detectorId, detector.id))
     .leftJoin(detectorUser, eq(detector.creatorId, detectorUser.id))
+    .innerJoin(managerUser, eq(project.managerId, managerUser.id))
     .where(and(eq(project.managerId, userId), eq(project.id, projectId)))
-    .groupBy(project.id, specie.name);
+    .groupBy(project.id, specie.name, managerUser.email);
   return res;
 }
 
