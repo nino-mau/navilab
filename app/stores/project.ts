@@ -2,21 +2,28 @@ import type { ProjectDetailsClient } from '#shared/types/projects';
 
 export const useProjectStore = defineStore('projectStore', {
   state: () => ({
-    project: {} as ProjectDetailsClient
+    project: undefined as ProjectDetailsClient | undefined
   }),
 
   getters: {
     detectorsCount(): number {
-      return this.project.detectors.length || 0;
+      return this.project?.detectors.length || 0;
     },
     contributorsCount(): number {
-      return this.project.contributors.length || 0;
+      return this.project?.contributors.length || 0;
     },
     requestsCount(): number {
-      return this.project.requests.length || 0;
+      return this.project?.requests.length || 0;
     },
     invitesCount(): number {
-      return this.project.invites.length || 0;
+      return this.project?.invites.length || 0;
+    },
+    activeDetectorsCount(): number {
+      return (
+        this.project?.detectors.filter(
+          (detector) => detector.status !== 'inactive'
+        ).length || 0
+      );
     }
   },
 
