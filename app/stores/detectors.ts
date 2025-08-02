@@ -6,15 +6,11 @@ export const useDetectorsStore = defineStore('detectorsStore', {
   }),
   actions: {
     async fetch(userId: string) {
-      const res = await $fetch.raw(`/api/users/${userId}/detectors`, {
+      const res = await $fetch(`/api/users/${userId}/detectors`, {
         method: 'GET'
       });
 
-      if (!res.ok) {
-        return;
-      }
-
-      this.detectors = res._data ?? [];
+      this.detectors = res ?? [];
     },
 
     async delete(detectorId: string, userId: string) {

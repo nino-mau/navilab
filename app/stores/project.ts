@@ -26,18 +26,11 @@ export const useProjectStore = defineStore('projectStore', {
      */
 
     async fetch(projectId: string, userId: string) {
-      const res = await $fetch.raw(
-        `/api/users/${userId}/projects/${projectId}`,
-        {
-          method: 'GET'
-        }
-      );
+      const res = await $fetch(`/api/users/${userId}/projects/${projectId}`, {
+        method: 'GET'
+      });
 
-      if (!res.ok) {
-        return;
-      }
-
-      this.project = res._data;
+      this.project = res;
     },
 
     /**

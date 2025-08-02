@@ -4,15 +4,11 @@ export const useRequestsStore = defineStore('requestsStore', {
   }),
   actions: {
     async fetch(userId: string) {
-      const res = await $fetch.raw(`/api/users/${userId}/requests`, {
+      const res = await $fetch(`/api/users/${userId}/requests`, {
         method: 'GET'
       });
 
-      if (!res.ok) {
-        return;
-      }
-
-      this.requests = res._data ?? [];
+      this.requests = res ?? [];
     },
 
     // async delete(detectorId: string, userId: string) {

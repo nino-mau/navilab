@@ -6,15 +6,11 @@ export const useProjectsStore = defineStore('projectsStore', {
   }),
   actions: {
     async fetch(userId: string) {
-      const res = await $fetch.raw(`/api/users/${userId}/projects`, {
+      const res = await $fetch(`/api/users/${userId}/projects`, {
         method: 'GET'
       });
 
-      if (!res.ok) {
-        return;
-      }
-
-      this.projects = res._data ?? [];
+      this.projects = res ?? [];
     },
 
     async delete(projectId: string, userId: string) {

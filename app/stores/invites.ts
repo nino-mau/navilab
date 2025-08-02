@@ -4,15 +4,11 @@ export const useInvitesStore = defineStore('invitesStore', {
   }),
   actions: {
     async fetch(userId: string) {
-      const res = await $fetch.raw(`/api/users/${userId}/invites`, {
+      const res = await $fetch(`/api/users/${userId}/invites`, {
         method: 'GET'
       });
 
-      if (!res.ok) {
-        return;
-      }
-
-      this.invites = res._data ?? [];
+      this.invites = res ?? [];
     },
 
     // async delete(detectorId: string, userId: string) {
