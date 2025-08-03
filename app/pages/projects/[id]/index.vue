@@ -21,6 +21,7 @@
             <h1 class="text-highlighted text-4xl leading-tight font-bold">
               {{ capitalizeFirstChar(projectStore.project?.name || '') }}
             </h1>
+
             <!-- Project Status -->
             <UiBadgeProjectStatus
               v-if="projectStore.project"
@@ -36,7 +37,9 @@
               color="neutral"
               variant="subtle"
               icon="i-lucide-trash"
+              @click="deleteProjectWrapper"
             />
+
             <!-- Button: Open Project Menu -->
             <UButton
               size="lg"
@@ -167,6 +170,8 @@ import { useRoute } from 'vue-router';
 
 const session = await authClient.getSession();
 
+const { confirm } = useConfirmModal();
+
 const route = useRoute();
 const projectId = route.params.id as string;
 
@@ -194,6 +199,28 @@ const projectTabs = computed(() => [
     slot: 'contributors' as const
   }
 ]) satisfies ComputedRef<TabsItem[]>;
+
+const deleteProjectWrapper = async (event: Event) => {
+  // Prevent card link to trigger on delete button click
+  event.preventDefault();
+  event.stopPropagation();
+
+  const confirmed = await confirm({
+    title: 'Delete Project',
+    desc: `Are you sure you want to delete "${projectStore.project?.name}" ? This action cannot be undone.`,
+    icon: 'i-lucide-circle-x'
+  });
+
+  if (!confirmed) return;
+
+  navigateTo('/projects');
+
+  try {
+    await projectStore.delete(projectId, session.data!.user.id);
+  } catch (err) {
+    console.error('[deleteProjectWrapper] Failed to delete project: \n:', err);
+  }
+};
 
 onMounted(async () => {
   if (!projectId || typeof projectId !== 'string') {
