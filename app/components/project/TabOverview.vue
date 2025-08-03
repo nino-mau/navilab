@@ -139,9 +139,11 @@
             <!-- Project Created Date -->
             <div class="flex flex-row justify-between">
               <p class="text-default">Created</p>
-              <p class="text-highlighted font-semibold">
-                {{ formattedStartDate }}
-              </p>
+              <NuxtTime
+                :datetime="props.project.startDate"
+                date-style="long"
+                class="text-highlighted font-semibold"
+              />
             </div>
           </div>
         </div>
@@ -151,8 +153,6 @@
 </template>
 
 <script setup lang="ts">
-import dayjs from 'dayjs';
-
 interface Props {
   project: ProjectDetailsClient;
   detectorsCount: number;
@@ -162,11 +162,4 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-
-const formattedStartDate = computed(() => {
-  const startDate = dayjs(props.project.startDate);
-  return startDate.format('dddd, MMMM D YYYY');
-});
-/* FIX: When void date.value is removed the startDate composable trigger an error when used in template */
-void formattedStartDate.value;
 </script>
