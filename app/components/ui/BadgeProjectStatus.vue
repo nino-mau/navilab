@@ -4,7 +4,7 @@
       :label="capitalizeFirstChar(props.status)"
       :size="props.size"
       color="neutral"
-      class="bg-slate-400"
+      class="size-fit bg-slate-400"
       variant="solid"
     />
   </template>
@@ -13,6 +13,7 @@
       :label="capitalizeFirstChar(props.status)"
       :size="props.size"
       color="warning"
+      class="size-fit"
       variant="subtle"
     />
   </template>
@@ -21,6 +22,7 @@
       :label="capitalizeFirstChar(props.status)"
       :size="props.size"
       color="success"
+      class="size-fit"
       variant="subtle"
     />
   </template>
