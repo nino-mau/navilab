@@ -69,6 +69,7 @@ export async function fetchProjectsById(userId: string) {
   const res = await db
     .select({
       ...getTableColumns(project),
+      lastUpdate: getISOFormatDateQuery(project.lastUpdate),
       startDate: getISOFormatDateQuery(project.startDate),
       endDate: getISOFormatDateQuery(project.endDate),
       contributorsCount: countDistinct(projectContributor.contributorId),

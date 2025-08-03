@@ -14,7 +14,8 @@ export type ProjectContributorStatus = 'inactive' | 'active';
 /**
  * Project object without details that is sent to the client.
  */
-export type ProjectClient = Project & {
+export type ProjectClient = Omit<Project, 'lastUpdate'> & {
+  lastUpdate: string;
   contributorsCount: number;
   detectorsCount: number;
   invitesCount: number;
