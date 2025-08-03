@@ -11,6 +11,10 @@
 
 :root {
   font-family: Inter, sans-serif;
+
+  /* BProgress styling */
+  --bprogress-color: var(--color-tertiary-600) !important;
+  --bprogress-height: 3px !important;
 }
 
 .lucide {
