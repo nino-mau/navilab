@@ -6,9 +6,6 @@ export const useProjectStore = defineStore('projectStore', {
   }),
 
   getters: {
-    /**
-     *   : Counts
-     */
     detectorsCount(): number {
       return this.project?.detectors.length || 0;
     },
@@ -40,7 +37,7 @@ export const useProjectStore = defineStore('projectStore', {
 
   actions: {
     /**
-     *   : Data Fetching
+     *   : API ACTIONS
      */
 
     async fetch(projectId: string, userId: string) {
@@ -51,8 +48,23 @@ export const useProjectStore = defineStore('projectStore', {
       this.project = res;
     },
 
+    async delete(projectId: string, userId: string) {
+      const res = await $fetch.raw(
+        `/api/users/${userId}/projects/${projectId}`,
+        {
+          method: 'DELETE'
+        }
+      );
+
+      if (!res.ok) {
+        return;
+      }
+
+      this.project = undefined;
+    },
+
     /**
-     *   : Data Processing
+     *   : STATE MANIPULATION
      */
 
     /**
