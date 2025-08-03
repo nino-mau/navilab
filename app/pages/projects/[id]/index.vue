@@ -16,7 +16,7 @@
       <!-- Main Header Section -->
       <div class="flex flex-col gap-4">
         <div class="flex flex-row items-start justify-between">
-          <div class="flex flex-row items-center gap-2">
+          <div class="flex flex-row items-center gap-4">
             <!-- Project Name -->
             <h1 class="text-highlighted text-4xl leading-tight font-bold">
               {{ capitalizeFirstChar(projectStore.project?.name || '') }}
@@ -50,7 +50,7 @@
 
         <!-- Project Description -->
         <div
-          class="rounded-lg border border-l-3 border-slate-200 bg-slate-50 p-3"
+          class="border-l-primary rounded-md border-0 border-l-3 border-slate-200 bg-slate-50 p-3"
         >
           <p class="text-default text-base leading-relaxed">
             {{ projectStore.project?.description }}
@@ -63,9 +63,9 @@
         <!-- Project Specie -->
         <div class="flex items-center gap-3 rounded-lg">
           <div
-            class="bg-primary-100 flex h-8 w-8 items-center justify-center rounded-md"
+            class="bg-primary flex h-8 w-8 items-center justify-center rounded-md"
           >
-            <LucideBird :size="16" class="!text-primary" />
+            <LucideBird :size="16" />
           </div>
           <div class="flex min-w-0 flex-col">
             <span class="text-muted text-xs uppercase">Species</span>
@@ -78,9 +78,9 @@
         <!-- Project Location Label -->
         <div class="flex items-center gap-3 rounded-lg">
           <div
-            class="bg-primary-100 flex h-8 w-8 items-center justify-center rounded-md"
+            class="bg-primary flex h-8 w-8 items-center justify-center rounded-md"
           >
-            <LucideMap :size="16" class="!text-primary" />
+            <LucideMap :size="16" />
           </div>
           <div class="flex min-w-0 flex-col">
             <span class="text-muted text-xs uppercase">Location</span>
@@ -93,9 +93,9 @@
         <!-- Project Detectors Count -->
         <div class="flex items-center gap-3 rounded-lg">
           <div
-            class="bg-primary-100 flex h-8 w-8 items-center justify-center rounded-md"
+            class="bg-primary flex h-8 w-8 items-center justify-center rounded-md"
           >
-            <LucideRadar :size="16" class="!text-primary" />
+            <LucideRadar :size="16" />
           </div>
           <div class="flex min-w-0 flex-col">
             <span class="text-muted text-xs uppercase">Detectors</span>
@@ -109,9 +109,9 @@
         <!-- Project Contributors Count -->
         <div class="flex items-center gap-3 rounded-lg">
           <div
-            class="bg-primary-100 flex h-8 w-8 items-center justify-center rounded-md"
+            class="bg-primary flex h-8 w-8 items-center justify-center rounded-md"
           >
-            <LucideUsers :size="16" class="!text-primary" />
+            <LucideUsers :size="16" />
           </div>
           <div class="flex min-w-0 flex-col">
             <span class="text-muted text-xs uppercase">Team</span>
