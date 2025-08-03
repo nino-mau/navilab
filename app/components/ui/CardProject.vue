@@ -1,6 +1,7 @@
 <template>
-  <div
+  <ULink
     class="card hover-lift flex size-full cursor-pointer flex-col justify-between gap-5 hover:shadow-xl"
+    :to="`/projects/${props.project.id}`"
   >
     <div>
       <div class="flex flex-row justify-between gap-6">
@@ -39,10 +40,6 @@
               {{ capitalizeFirstChar(props.project.name) }}
             </h1>
           </div>
-
-          <!-- <p class="text-default mt-1.5 text-sm"> -->
-          <!--   {{ props.project.description }} -->
-          <!-- </p> -->
         </div>
         <div class="flex flex-row gap-3">
           <!-- Button: Edit Project -->
@@ -58,8 +55,8 @@
             size="lg"
             class="size-fit"
             icon="i-lucide-trash-2"
-            variant="soft"
-            color="error"
+            variant="subtle"
+            color="neutral"
             @click="
               deleteProjectWrapper(props.project.id, session.data!.user.id)
             "
@@ -67,7 +64,7 @@
         </div>
       </div>
 
-      <div class="mt-4 flex flex-row gap-10">
+      <div class="mt-5 flex flex-row gap-10">
         <!-- Project Specie -->
         <div class="flex flex-row items-center gap-2">
           <div
@@ -75,7 +72,7 @@
           >
             <LucideBird :size="15" />
           </div>
-          <p class="text-default italic">{{ props.project.specieName }}</p>
+          <p class="text-default">{{ props.project.specieName }}</p>
         </div>
 
         <!-- Project Location -->
@@ -85,7 +82,7 @@
           >
             <LucideMap :size="15" />
           </div>
-          <p class="text-default italic">{{ props.project.locationLabel }}</p>
+          <p class="text-default">{{ props.project.locationLabel }}</p>
         </div>
       </div>
     </div>
@@ -109,7 +106,7 @@
         variant="subtle"
       />
     </div>
-  </div>
+  </ULink>
 </template>
 
 <script setup lang="ts">
