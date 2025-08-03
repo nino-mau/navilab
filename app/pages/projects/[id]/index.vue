@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-12 mt-12 flex h-full flex-col gap-6">
+  <div class="mx-6 mt-6 flex h-full flex-col gap-6">
     <!-- Button: Go back to home -->
     <UButton
       variant="subtle"
@@ -13,11 +13,12 @@
 
     <!-- Project Heading Card -->
     <div class="card flex h-fit flex-col gap-6">
+      <!-- Main Header Section -->
       <div class="flex flex-col gap-4">
-        <div class="flex flex-row justify-between">
-          <div class="flex flex-row items-center gap-5">
+        <div class="flex flex-row items-start justify-between">
+          <div class="flex flex-row items-center gap-2">
             <!-- Project Name -->
-            <h1 class="text-highlighted text-4xl font-bold">
+            <h1 class="text-highlighted text-4xl leading-tight font-bold">
               {{ capitalizeFirstChar(projectStore.project?.name || '') }}
             </h1>
             <!-- Project Status -->
@@ -48,61 +49,77 @@
         </div>
 
         <!-- Project Description -->
-        <p class="text-default rounded-sm bg-slate-200 p-3">
-          {{ projectStore.project?.description }}
-        </p>
+        <div
+          class="rounded-lg border border-l-3 border-slate-200 bg-slate-50 p-3"
+        >
+          <p class="text-default text-base leading-relaxed">
+            {{ projectStore.project?.description }}
+          </p>
+        </div>
       </div>
-      <div class="flex flex-row gap-12">
+
+      <!-- Project Metadata Grid -->
+      <div class="flex flex-row gap-35">
         <!-- Project Specie -->
-        <div class="flex flex-row items-center gap-2">
+        <div class="flex items-center gap-3 rounded-lg">
           <div
-            class="bg-primary flex items-center justify-center rounded-sm p-1"
+            class="bg-primary-100 flex h-8 w-8 items-center justify-center rounded-md"
           >
-            <LucideBird :size="15" />
+            <LucideBird :size="16" class="!text-primary" />
           </div>
-          <p class="text-default">{{ projectStore.project?.specieName }}</p>
+          <div class="flex min-w-0 flex-col">
+            <span class="text-muted text-xs uppercase">Species</span>
+            <p class="text-default truncate text-sm font-medium">
+              {{ projectStore.project?.specieName }}
+            </p>
+          </div>
         </div>
 
         <!-- Project Location Label -->
-        <div class="flex flex-row items-center gap-2">
+        <div class="flex items-center gap-3 rounded-lg">
           <div
-            class="bg-primary flex items-center justify-center rounded-sm p-1"
+            class="bg-primary-100 flex h-8 w-8 items-center justify-center rounded-md"
           >
-            <LucideMap :size="15" />
+            <LucideMap :size="16" class="!text-primary" />
           </div>
-          <p class="text-default">
-            {{ projectStore.project?.locationLabel }}
-          </p>
+          <div class="flex min-w-0 flex-col">
+            <span class="text-muted text-xs uppercase">Location</span>
+            <p class="text-default truncate text-sm font-medium">
+              {{ projectStore.project?.locationLabel }}
+            </p>
+          </div>
         </div>
 
         <!-- Project Detectors Count -->
-        <div class="flex flex-row items-center gap-2">
+        <div class="flex items-center gap-3 rounded-lg">
           <div
-            class="bg-primary flex items-center justify-center rounded-sm p-1"
+            class="bg-primary-100 flex h-8 w-8 items-center justify-center rounded-md"
           >
-            <LucideRadar :size="15" />
+            <LucideRadar :size="16" class="!text-primary" />
           </div>
-          <p class="text-default">
-            {{ projectStore.detectorsCount }}
-            {{ projectStore.detectorsCount === 1 ? 'Detector' : 'Detectors' }}
-          </p>
+          <div class="flex min-w-0 flex-col">
+            <span class="text-muted text-xs uppercase">Detectors</span>
+            <p class="text-default text-sm font-medium">
+              {{ projectStore.detectorsCount }}
+              {{ projectStore.detectorsCount === 1 ? 'Device' : 'Devices' }}
+            </p>
+          </div>
         </div>
 
         <!-- Project Contributors Count -->
-        <div class="flex flex-row items-center gap-2">
+        <div class="flex items-center gap-3 rounded-lg">
           <div
-            class="bg-primary flex items-center justify-center rounded-sm p-1"
+            class="bg-primary-100 flex h-8 w-8 items-center justify-center rounded-md"
           >
-            <LucideUsers :size="15" />
+            <LucideUsers :size="16" class="!text-primary" />
           </div>
-          <p class="text-default">
-            {{ projectStore.contributorsCount }}
-            {{
-              projectStore.contributorsCount === 1
-                ? 'Contributor'
-                : 'Contributors'
-            }}
-          </p>
+          <div class="flex min-w-0 flex-col">
+            <span class="text-muted text-xs uppercase">Team</span>
+            <p class="text-default text-sm font-medium">
+              {{ projectStore.contributorsCount }}
+              {{ projectStore.contributorsCount === 1 ? 'Member' : 'Members' }}
+            </p>
+          </div>
         </div>
       </div>
     </div>
