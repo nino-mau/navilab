@@ -1,5 +1,5 @@
 import type { ProjectClient } from '#shared/types/projects';
-import { fetchProjectsById } from '~~/server/services/project.service';
+import { fetchProjectsById } from '@server/services/project';
 import { getProjectStatus } from '~~/server/utils/project';
 
 /**

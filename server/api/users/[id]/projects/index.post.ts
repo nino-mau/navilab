@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { createProject } from '~~/server/services/project.service';
+import { createProject } from '@server/services/project';
 
 // Data validation schema
 const dataValidationSchema = z.object({

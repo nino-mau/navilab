@@ -1,4 +1,4 @@
-import { deleteProjectById } from '~~/server/services/project.service';
+import { deleteProjectById } from '@server/services/project';
 
 /**
  * Delete a project from database
