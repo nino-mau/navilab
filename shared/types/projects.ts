@@ -3,6 +3,7 @@ import type { project } from '../../server/db/schema';
 import type { DetectorClient } from './detector';
 import type { Invite } from './invite';
 import type { RequestClient } from './request';
+import type { UserRole } from './user';
 
 export type Project = InferSelectModel<typeof project>;
 export type ProjectInsert = InferInsertModel<typeof project>;
@@ -40,7 +41,9 @@ export type ProjectDetailsClient = Omit<
   contributors: {
     id: string;
     name: string;
+    role: UserRole;
     email: string;
+    avatarUrl: string | null;
     status: ProjectContributorStatus;
   }[];
   detectors: DetectorClient[];

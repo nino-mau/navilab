@@ -30,7 +30,7 @@ export async function fetchProjectById(projectId: string, userId: string) {
       specieName: specie.name,
       lastUpdate: getISOFormatDateQuery(project.lastUpdate),
       contributors:
-        sql`json_agg(DISTINCT jsonb_build_object('id', ${user.id}, 'name', ${user.name}, 'email', ${user.email}))`.as(
+        sql`json_agg(DISTINCT jsonb_build_object('id', ${user.id}, 'name', ${user.name}, 'email', ${user.email}, 'role', ${user.role}, 'avatarUrl', ${user.avatarUrl}))`.as(
           'contributors'
         ),
       detectors:
