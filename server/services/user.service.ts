@@ -5,7 +5,8 @@ import { user } from '../db/schema';
 export async function fetchUserById(userId: string) {
   const res = await db
     .select({
-      username: user.name,
+      id: user.id,
+      name: user.name,
       email: user.email,
       role: user.role,
       avatarUrl: user.avatarUrl
