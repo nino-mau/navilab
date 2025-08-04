@@ -26,6 +26,13 @@
             variant="subtle"
             color="success"
             icon="i-lucide-check"
+            @click="
+              project.acceptRequest(
+                props.request.id,
+                props.request.projectId,
+                session.data!.user.id
+              )
+            "
           />
           <!-- Button: Refuse Request -->
           <UButton size="lg" variant="subtle" color="error" icon="i-lucide-x" />
@@ -48,7 +55,11 @@ const props = defineProps({
   }
 });
 
+const session = await authClient.getSession();
+
 const rc = useRuntimeConfig();
+
+const project = useProjectStore();
 
 const avatarUrl =
   rc.public.avatarPlaceholderUrl + `&seed=${props.request.requesterName}`;

@@ -157,7 +157,7 @@
         <ProjectTabContributors
           v-if="projectStore.project"
           :contributors="projectStore.project.contributors"
-          :requests="projectStore.project.requests"
+          :requests="projectStore.pendingRequests"
         />
       </template>
     </UTabs>
