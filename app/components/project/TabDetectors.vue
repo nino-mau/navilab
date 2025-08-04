@@ -42,6 +42,13 @@
             size="lg"
             color="error"
             variant="subtle"
+            @click="
+              project.removeDetector(
+                detector.id,
+                project.project!.id,
+                session.data!.user.id
+              )
+            "
           />
           <!-- Button: Open Detector Menu -->
           <UButton
@@ -63,4 +70,8 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+
+const session = await authClient.getSession();
+
+const project = useProjectStore();
 </script>
