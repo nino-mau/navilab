@@ -6,6 +6,16 @@ export const useProjectStore = defineStore('projectStore', {
   }),
 
   getters: {
+    pendingRequests(): ProjectDetailsClient['requests'] {
+      return this.project!.requests.filter(
+        (request) => request.status === 'pending'
+      );
+    },
+
+    /**
+     *   : COUNTS
+     */
+
     detectorsCount(): number {
       return this.project?.detectors.length || 0;
     },
