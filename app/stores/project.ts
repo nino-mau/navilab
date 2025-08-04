@@ -63,6 +63,30 @@ export const useProjectStore = defineStore('projectStore', {
       this.project = undefined;
     },
 
+    async removeDetector(
+      detectorId: string,
+      projectId: string,
+      userId: string
+    ) {
+      const res = await $fetch.raw(
+        `/api/users/${userId}/projects/${projectId}/detectors/${detectorId}`,
+        {
+          method: 'DELETE'
+        }
+      );
+
+      if (!res.ok) {
+        return;
+      }
+
+      // Remove the deleted detector from the state
+      if (this.project) {
+        this.project.detectors = this.project.detectors.filter(
+          (detector) => detector.id !== detectorId
+        );
+      }
+    },
+
     /**
      *   : STATE MANIPULATION
      */
