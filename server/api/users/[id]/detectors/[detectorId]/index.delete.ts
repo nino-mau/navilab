@@ -3,10 +3,10 @@ import { deleteDetectorById } from '~~/server/services/detector.service';
 /**
  * Delete a detector from database
  *
- * @DELETE /api/users/[id]/detectors/[id]
+ * @DELETE /api/users/[id]/detectors/[detectorId]
  */
 export default defineEventHandler(async (event) => {
-  const detectorId = getRouterParam(event, 'id');
+  const detectorId = getRouterParam(event, 'detectorId');
 
   if (!detectorId) {
     throw createError({
