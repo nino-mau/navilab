@@ -1,6 +1,6 @@
 import { and, countDistinct, eq, getTableColumns, sql } from 'drizzle-orm';
 import { alias } from 'drizzle-orm/pg-core';
-import db from '../db/client';
+import db from '@server/db/client';
 import {
   detector,
   project,
@@ -10,8 +10,8 @@ import {
   projectRequest,
   specie,
   user
-} from '../db/schema';
-import { getISOFormatDateQuery } from '../utils/db';
+} from '@server/db/schema';
+import { getISOFormatDateQuery } from '@server/utils/db';
 
 /**
  * Fetch a project of specified user
