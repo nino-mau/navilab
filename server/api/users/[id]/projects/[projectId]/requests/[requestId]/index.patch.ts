@@ -90,4 +90,22 @@ export default defineEventHandler(async (event) => {
     setResponseStatus(event, 201);
     return { contributorDetails: contributorDetails[0] };
   }
+
+  /**
+   * Handle refuse action
+   */
+  if (action === 'refuse') {
+    // Set request status to refused
+    const updateId = await updateRequestStatus(requestId, projectId, 'refused');
+
+    if (!updateId.length || !updateId[0].updateId) {
+      throw createError({
+        statusCode: 500,
+        statusMessage: 'Failed to update request status in database'
+      });
+    }
+
+    setResponseStatus(event, 201);
+    return { contributorDetails: undefined };
+  }
 });
