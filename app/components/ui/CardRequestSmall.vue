@@ -35,7 +35,19 @@
             "
           />
           <!-- Button: Refuse Request -->
-          <UButton size="lg" variant="subtle" color="error" icon="i-lucide-x" />
+          <UButton
+            size="lg"
+            variant="subtle"
+            color="error"
+            icon="i-lucide-x"
+            @click="
+              project.refuseRequest(
+                props.request.id,
+                props.request.projectId,
+                session.data!.user.id
+              )
+            "
+          />
         </div>
       </div>
 
