@@ -138,6 +138,35 @@ export const useProjectStore = defineStore('projectStore', {
       }
     },
 
+    async refuseRequest(requestId: string, projectId: string, userId: string) {
+      const res = await $fetch.raw(
+        `/api/users/${userId}/projects/${projectId}/requests/${requestId}`,
+        {
+          method: 'PATCH',
+          body: { action: 'refuse' }
+        }
+      );
+
+      if (!res.ok) {
+        return;
+      }
+
+      if (this.project) {
+        // Change refused request status
+        this.project.requests = this.project.requests.map((request) => {
+          if (request.id === requestId) {
+            return {
+              ...request,
+              status: 'refused'
+            };
+          }
+          return {
+            ...request
+          };
+        });
+      }
+    },
+
     /**
      *   : STATE MANIPULATION
      */
