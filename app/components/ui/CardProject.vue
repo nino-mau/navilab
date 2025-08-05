@@ -7,7 +7,7 @@
       <div class="flex flex-col gap-1">
         <div class="flex flex-row gap-3">
           <!-- Project Name -->
-          <h2 class="text-highlighted text-lg font-bold">
+          <h2 class="text-highlighted text-xl font-bold">
             {{ props.project.name }}
           </h2>
           <!-- Project Status -->
@@ -16,10 +16,12 @@
           </div>
         </div>
         <div class="flex flex-row gap-8">
+          <!-- Project Specie -->
           <div class="flex flex-row items-center gap-1">
             <LucideBird :size="12" class="!text-muted" />
             <p class="text-muted text-xs">{{ props.project.specieName }}</p>
           </div>
+          <!-- Project Location Label -->
           <div class="flex flex-row items-center gap-1">
             <LucideMapPin :size="12" class="!text-muted" />
             <p class="text-muted text-xs">
@@ -117,18 +119,6 @@
           </p>
         </div>
       </div>
-      <!-- Progress Requests Count -->
-      <!-- <div class="flex flex-row items-center gap-3"> -->
-      <!--   <div class="bg-primary-100 rounded-sm p-1.5"> -->
-      <!--     <LucideBird :size="18" class="!text-primary" /> -->
-      <!--   </div> -->
-      <!--   <div class="flex flex-col"> -->
-      <!--     <h3 class="text-default/80 text-xs">Specie</h3> -->
-      <!--     <p class="text-default text-sm font-bold"> -->
-      <!--       {{ props.project.specieName }} -->
-      <!--     </p> -->
-      <!--   </div> -->
-      <!-- </div> -->
     </div>
 
     <div
