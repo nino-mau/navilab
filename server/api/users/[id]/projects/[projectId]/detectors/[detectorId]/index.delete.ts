@@ -34,5 +34,4 @@ export default defineEventHandler(async (event) => {
   }
 
   setResponseStatus(event, 204);
-  return { deleteId: res[0].deletedId };
 });
