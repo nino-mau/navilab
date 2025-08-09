@@ -7,8 +7,10 @@ export const useProjectStore = defineStore('projectStore', {
 
   getters: {
     pendingRequests(): ProjectDetailsClient['requests'] {
-      return this.project!.requests.filter(
-        (request) => request.status === 'pending'
+      return (
+        this.project?.requests.filter(
+          (request) => request.status === 'pending'
+        ) || []
       );
     },
 
