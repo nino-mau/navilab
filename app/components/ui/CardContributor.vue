@@ -30,14 +30,17 @@
         </div>
       </div>
 
-      <!-- Button: Revoke Access -->
-      <UButton
-        size="lg"
-        class="size-fit"
-        color="neutral"
-        icon="i-lucide-ellipsis"
-        variant="subtle"
-      />
+      <!-- Button: Open Contributor Menu -->
+      <UDropdownMenu :items="dropdownMenuItems">
+        <UButton
+          size="lg"
+          class="size-fit"
+          color="neutral"
+          icon="i-lucide-ellipsis"
+          variant="subtle"
+          aria-label="Open contributor dropdown menu"
+        />
+      </UDropdownMenu>
     </div>
     <div
       class="flex flex-row justify-between border-t-1 border-t-slate-300 pt-3.5"
@@ -57,19 +60,42 @@
 </template>
 
 <script setup lang="ts">
+import type { DropdownMenuItem } from '@nuxt/ui';
+
 interface Props {
   contributor: ProjectDetailsClient['contributors'][0];
 }
 const props = defineProps<Props>();
 
-const rc = useRuntimeConfig();
-
-const projectStore = useProjectStore();
-
-const detectorsCount = projectStore.getContributorDetectorsCount(
+const project = useProjectStore();
+const detectorsCount = project.getContributorDetectorsCount(
   props.contributor.id
 );
 
+const session = await authClient.getSession();
+
+const rc = useRuntimeConfig();
+
 const avatarUrl =
   rc.public.avatarPlaceholderUrl + `&seed=${props.contributor.name}`;
+
+const dropdownMenuItems = ref<DropdownMenuItem[][]>([
+  [
+    {
+      label: 'Revoke Access',
+      icon: 'i-lucide-ban',
+      ui: {
+        itemLeadingIcon: '!text-dimmed hover:!text-dimmed',
+        item: 'hover:bg-gray-100'
+      },
+      async onSelect() {
+        project.removeContributor(
+          props.contributor.id,
+          project.project!.id,
+          session.data!.user.id
+        );
+      }
+    }
+  ]
+]);
 </script>
