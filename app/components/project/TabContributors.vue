@@ -45,9 +45,7 @@ interface Props {
 const props = defineProps<Props>();
 
 const session = await authClient.getSession();
-const requestsStore = useRequestsStore();
 
-onMounted(async () => {
-  await requestsStore.fetch(session.data!.user.id);
-});
+const requestsStore = useRequestsStore();
+await requestsStore.fetch(session.data!.user.id);
 </script>

@@ -155,6 +155,11 @@ const projectsStore = useProjectsStore();
 const requestsStore = useRequestsStore();
 const invitesStore = useInvitesStore();
 
+// Update used store state
+await projectsStore.fetch(session.data!.user.id);
+await requestsStore.fetch(session.data!.user.id);
+await invitesStore.fetch(session.data!.user.id);
+
 const activeTab = ref(2);
 
 watch(
@@ -190,11 +195,4 @@ const tabs = computed(() => [
     slot: 'pendingInvites' as const
   }
 ]) satisfies ComputedRef<TabsItem[]>;
-
-onMounted(async () => {
-  // Update used store state
-  await projectsStore.fetch(session.data!.user.id);
-  await requestsStore.fetch(session.data!.user.id);
-  await invitesStore.fetch(session.data!.user.id);
-});
 </script>

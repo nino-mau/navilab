@@ -169,13 +169,14 @@ import type { TabsItem } from '@nuxt/ui';
 import { useRoute } from 'vue-router';
 
 const session = await authClient.getSession();
-
-const { confirm } = useConfirmModal();
+const projectStore = useProjectStore();
 
 const route = useRoute();
 const projectId = route.params.id as string;
 
-const projectStore = useProjectStore();
+await projectStore.fetch(projectId, session.data!.user.id);
+
+const { confirm } = useConfirmModal();
 
 const projectTabs = computed(() => [
   {
@@ -226,6 +227,5 @@ onMounted(async () => {
   if (!projectId || typeof projectId !== 'string') {
     return navigateTo('/404');
   }
-  await projectStore.fetch(projectId, session.data!.user.id);
 });
 </script>

@@ -140,11 +140,19 @@ import type { DetectorStatus } from '~~/shared/types/detector';
 const session = await authClient.getSession();
 const detectorStore = useDetectorsStore();
 
+const detectorsTableLoading = ref<boolean>(false);
+
+// Update detectors state
+try {
+  detectorsTableLoading.value = true;
+  await detectorStore.fetch(session.data!.user.id);
+} finally {
+  detectorsTableLoading.value = false;
+}
+
 const UButton = resolveComponent('UButton');
 const UBadge = resolveComponent('UBadge');
 const UChip = resolveComponent('UChip');
-
-const detectorsTableLoading = ref<boolean>(false);
 
 const detectorsTableColumns: TableColumn<DetectorClient>[] = [
   {
@@ -255,14 +263,4 @@ const detectorsTableColumns: TableColumn<DetectorClient>[] = [
     }
   }
 ];
-
-onMounted(async () => {
-  // Update detectors state
-  try {
-    detectorsTableLoading.value = true;
-    await detectorStore.fetch(session.data!.user.id);
-  } finally {
-    detectorsTableLoading.value = false;
-  }
-});
 </script>
