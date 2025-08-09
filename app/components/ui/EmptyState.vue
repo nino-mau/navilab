@@ -1,8 +1,6 @@
 <template>
   <div class="my-auto flex flex-col items-center">
-    <div
-      class="bg-tertiary flex size-16 items-center justify-center rounded-sm"
-    >
+    <div class="bg-primary flex size-16 items-center justify-center rounded-sm">
       <component :is="props.icon" v-if="props.icon" :size="32" />
     </div>
 
@@ -14,6 +12,7 @@
     </div>
 
     <UButton
+      v-if="props.hasButton"
       variant="outline"
       color="neutral"
       :label="props.buttonLabel"
@@ -29,11 +28,13 @@ interface Props {
   buttonLabel?: string;
   desc?: string;
   icon: LucideIcon;
+  hasButton?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   label: 'No Projects',
   buttonLabel: 'Create Project',
-  desc: 'You currently do not have any project, create one to start using our features'
+  desc: 'You currently do not have any project, create one to start using our features',
+  hasButton: true
 });
 </script>
