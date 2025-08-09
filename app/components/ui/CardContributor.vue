@@ -14,6 +14,7 @@
           :src="avatarUrl"
           size="3xl"
           class="rounded-sm"
+          loading="lazy"
         />
 
         <div class="flex w-full flex-col">
