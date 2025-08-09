@@ -46,3 +46,26 @@ export function getProjectContributorStatus(projectData: ProjectDetailsClient) {
     };
   });
 }
+
+/**
+ * Remove contributors/detectors items that have null ids
+ */
+export function cleanProjectData(
+  projectData: ProjectDetailsClient
+): ProjectDetailsClient {
+  return {
+    ...projectData,
+    contributors: projectData.contributors.filter(
+      (contributor) => contributor.id !== null && contributor.id !== undefined
+    ),
+    detectors: projectData.detectors.filter(
+      (detector) => detector.id !== null && detector.id !== undefined
+    ),
+    requests: projectData.requests.filter(
+      (request) => request.id !== null && request.id !== undefined
+    ),
+    invites: projectData.invites.filter(
+      (invite) => invite.id !== null && invite.id !== undefined
+    )
+  };
+}

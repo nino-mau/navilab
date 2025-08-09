@@ -1,6 +1,7 @@
 import type { ProjectDetailsClient } from '#shared/types/projects';
 import { fetchProjectById } from '@server/services/project';
 import {
+  cleanProjectData,
   getProjectContributorStatus,
   getProjectStatus
 } from '~~/server/utils/project';
@@ -30,14 +31,17 @@ export default defineEventHandler(async (event) => {
     const res = await fetchProjectById(projectId, userId);
     const rawProjectData = res[0] as ProjectDetailsClient;
 
+    // Remove null items
+    const cleanedProjectData = cleanProjectData(rawProjectData);
+
     // Set status of project and status of project contributors
     const projectData = {
-      ...rawProjectData,
+      ...cleanedProjectData,
       status: getProjectStatus(
-        rawProjectData.startDate,
-        rawProjectData.endDate
+        cleanedProjectData.startDate,
+        cleanedProjectData.endDate
       ),
-      contributors: getProjectContributorStatus(rawProjectData)
+      contributors: getProjectContributorStatus(cleanedProjectData)
     };
 
     setResponseStatus(event, 200);
