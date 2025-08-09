@@ -96,6 +96,35 @@ export const useProjectStore = defineStore('projectStore', {
           (detector) => detector.id !== detectorId
         );
       }
+    async removeContributor(
+      contributorId: string,
+      projectId: string,
+      userId: string
+    ) {
+      const res = await $fetch.raw(
+        `/api/users/${userId}/projects/${projectId}/contributors/${contributorId}`,
+        {
+          method: 'DELETE'
+        }
+      );
+
+      if (!res.ok) {
+        return;
+      }
+
+      if (this.project) {
+        // Remove the removed contributor from state
+        this.project.contributors = this.project.contributors.filter(
+          (contributor) => contributor.id !== contributorId
+        );
+
+        // Remove the removed contributor's detectors from state
+        if (res._data?.deletedDetectorsId.length) {
+          this.project.detectors = this.project.detectors.filter(
+            (detector) => !res._data!.deletedDetectorsId.includes(detector.id)
+          );
+        }
+      }
     },
 
     async acceptRequest(requestId: string, projectId: string, userId: string) {
