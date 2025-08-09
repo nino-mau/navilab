@@ -1,16 +1,21 @@
 <template>
   <div class="mt-4 grid size-full grid-cols-[5.5fr_3.5fr] gap-6">
     <!-- Contributors List -->
-    <ul class="col-span-1 grid h-fit grid-cols-2 gap-6">
+    <TransitionGroup
+      name="list"
+      tag="ul"
+      class="col-span-1 grid h-fit grid-cols-2 gap-6"
+      appear
+    >
       <li
-        v-for="(contributor, index) in contributors"
+        v-for="(contributor, index) in props.contributors"
         :key="contributor.id"
         class="col-span-1 h-fit"
         :style="{ transitionDelay: `${Math.floor(index / 2) * 150}ms` }"
       >
         <UiCardContributor :contributor="contributor" />
       </li>
-    </ul>
+    </TransitionGroup>
 
     <!-- Card: Project Join Requests -->
     <div class="card col-span-1 flex h-fit flex-col">
@@ -40,7 +45,13 @@
       </div>
 
       <!-- Requests List -->
-      <ul class="flex max-h-full flex-col gap-4 pt-6">
+      <TransitionGroup
+        v-else
+        name="list"
+        tag="ul"
+        class="flex max-h-full flex-col gap-4 pt-6"
+        appear
+      >
         <li
           v-for="(request, index) in props.requests"
           :key="request.id"
@@ -48,7 +59,7 @@
         >
           <UiCardRequestSmall :request="request" />
         </li>
-      </ul>
+      </TransitionGroup>
     </div>
   </div>
 </template>
