@@ -14,13 +14,29 @@
 
     <!-- Card: Project Join Requests -->
     <div class="card col-span-1 flex h-fit flex-col">
-      <div class="flex flex-row items-center gap-3">
+      <div
+        v-if="props.requests.length !== 0"
+        class="flex flex-row items-center gap-3"
+      >
         <div
           class="bg-primary flex size-fit items-center justify-center rounded-sm p-1.5"
         >
           <LucideMail :size="20" />
         </div>
         <h2 class="text-highlighted text-2xl font-bold">Requests</h2>
+      </div>
+
+      <!-- Empty State -->
+      <div
+        v-if="props.requests.length === 0"
+        class="my-5 flex size-full items-center justify-center"
+      >
+        <UiEmptyState
+          label="No Requests"
+          desc="Your project currently does not have any request, you can invite your team members to join your project."
+          :has-button="false"
+          :icon="LucideMail"
+        />
       </div>
 
       <!-- Requests List -->
@@ -38,6 +54,8 @@
 </template>
 
 <script setup lang="ts">
+import { LucideMail } from '#components';
+
 interface Props {
   contributors: ProjectDetailsClient['contributors'];
   requests: ProjectDetailsClient['requests'];
