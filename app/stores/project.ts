@@ -79,6 +79,7 @@ export const useProjectStore = defineStore('projectStore', {
       projectId: string,
       userId: string
     ) {
+      const toast = useAppToast();
       const res = await $fetch.raw(
         `/api/users/${userId}/projects/${projectId}/detectors/${detectorId}`,
         {
@@ -87,6 +88,10 @@ export const useProjectStore = defineStore('projectStore', {
       );
 
       if (!res.ok) {
+        toast.error({
+          title: 'Failed to remove detector',
+          description: 'Operation failed after unkown error, please try again'
+        });
         return;
       }
 
@@ -96,11 +101,17 @@ export const useProjectStore = defineStore('projectStore', {
           (detector) => detector.id !== detectorId
         );
       }
+      toast.success({
+        description: 'Detector and its data was removed from the project'
+      });
+    },
+
     async removeContributor(
       contributorId: string,
       projectId: string,
       userId: string
     ) {
+      const toast = useAppToast();
       const res = await $fetch.raw(
         `/api/users/${userId}/projects/${projectId}/contributors/${contributorId}`,
         {
@@ -109,6 +120,9 @@ export const useProjectStore = defineStore('projectStore', {
       );
 
       if (!res.ok) {
+        toast.error({
+          description: 'Operation failed after unkown error, please try again'
+        });
         return;
       }
 
@@ -125,9 +139,13 @@ export const useProjectStore = defineStore('projectStore', {
           );
         }
       }
+      toast.success({
+        description: 'Contributor and its data was removed from the project'
+      });
     },
 
     async acceptRequest(requestId: string, projectId: string, userId: string) {
+      const toast = useAppToast();
       const res = await $fetch.raw(
         `/api/users/${userId}/projects/${projectId}/requests/${requestId}`,
         {
@@ -137,6 +155,9 @@ export const useProjectStore = defineStore('projectStore', {
       );
 
       if (!res.ok) {
+        toast.error({
+          description: 'Request failed after unexpected error, please try again'
+        });
         return;
       }
 
@@ -167,9 +188,14 @@ export const useProjectStore = defineStore('projectStore', {
           status: 'inactive'
         });
       }
+
+      toast.success({
+        description: 'A new contributors has been added to the project'
+      });
     },
 
     async refuseRequest(requestId: string, projectId: string, userId: string) {
+      const toast = useAppToast();
       const res = await $fetch.raw(
         `/api/users/${userId}/projects/${projectId}/requests/${requestId}`,
         {
@@ -179,6 +205,9 @@ export const useProjectStore = defineStore('projectStore', {
       );
 
       if (!res.ok) {
+        toast.error({
+          description: 'Operation failed after unkown error, please try again'
+        });
         return;
       }
 
@@ -196,6 +225,9 @@ export const useProjectStore = defineStore('projectStore', {
           };
         });
       }
+      toast.success({
+        description: 'The contributor request was refused'
+      });
     },
 
     /**
