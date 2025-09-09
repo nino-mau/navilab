@@ -21,3 +21,9 @@ Connect to the `nuxt_db` database using the psql command-line interface.
 ```bash
 docker compose exec postgres psql -d nuxt_db -U admin
 ```
+
+## Documentation
+
+### [Features](./doc/features.md)
+
+### [Bugs](./doc/bugs.md)
