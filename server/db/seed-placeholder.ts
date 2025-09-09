@@ -5,9 +5,9 @@ import projectsData from './data/placeholder/projects.json';
 import usersData from './data/placeholder/users.json';
 import detectorsData from './data/placeholder/detectors.json';
 import projectContributorData from './data/placeholder/projectContributors.json';
+import projectInviteData from './data/placeholder/projectInvites.json';
 import projectDetectorData from './data/placeholder/projectDetectors.json';
 import projectRequestData from './data/placeholder/projectRequests.json';
-import projectInviteData from './data/placeholder/projectInvites.json';
 import {
   detector,
   project,
@@ -17,6 +17,7 @@ import {
   projectRequest,
   user
 } from './schema';
+import type { Invite } from '~~/shared/types/invite';
 
 /**
  * Insert placeholder data in db
@@ -75,7 +76,7 @@ async function main() {
   await db.insert(projectContributor).values(projectContributorData);
   await db.insert(projectDetector).values(projectDetectorData);
   await db.insert(projectRequest).values(projectRequestData);
-  await db.insert(projectInvite).values(projectInviteData);
+  await db.insert(projectInvite).values(projectInviteData as Invite[]);
 
   console.log('✅ Seed Placeholder complete');
   return;
